@@ -3,6 +3,8 @@ package financialportal;
 import java.util.ArrayList;
 
 /**
+ * Class that will determine how the model (database) will interact with the
+ * user (view)
  *
  * @author Christian Kasel
  */
@@ -13,30 +15,23 @@ public class FinancialPortalController {
      */
     public static void main(String[] args) {
         FinancialPortalModel model = new FinancialPortalModel();
-        ArrayList<Account> accounts = model.queryAccounts();
-        accounts.forEach((a) -> {
-            System.out.println("Amount: " + a.getAmount() + " Institution: " + a.getInstitution() + " Type: " + a.getType());
-        });
-        ArrayList<Budget> budgets = model.queryBudgets();
-        budgets.forEach((a) -> {
-            System.out.println("Frame: " + a.getFrame()+ " Paid: " + a.getPaid()+ " Total: " + a.getTotal() + " Type: " + a.getType());
-        });
-        ArrayList<Loan> loans = model.queryLoans();
-        loans.forEach((a) -> {
-            System.out.println("Interest: " + a.getInterest()+ "% Paid: " + a.getPaid()+ " Remaining: " + a.getRemaining()+ " Total: " + a.getTotal());
-        });
-        ArrayList<Spending> spendings = model.querySpendings();
-        spendings.forEach((a) -> {
-            System.out.println("Frame: " + a.getFrame()+ " Total: " + a.getTotal()+ " Type: " + a.getType());
-        });
-        ArrayList<Transaction> transactions = model.queryTransactions();
-        transactions.forEach((a) -> {
-            System.out.println("Amount: " + a.getAmount()+ " Date: " + a.getDate()+ " Institution: " + a.getInstitution());
-        });
-        ArrayList<Trend> trends = model.queryTrends();
-        trends.forEach((a) -> {
-            System.out.println("Amount: " + a.getAmount()+ " Frame: " + a.getFrame() + " Group: " + a.getGroup());
-        });
+        FinancialPortalView view = new FinancialPortalView();
+
+        getAllData(view, model);
     }
 
+    /**
+     * Function to return all of the information in each of the tables
+     *
+     * @param view the view that will display all the information
+     * @param model the model that gets all the information
+     */
+    public static void getAllData(FinancialPortalView view, FinancialPortalModel model) {
+        view.displayAccounts(model.queryAccounts(view.getInstitution("Bank Account"), view.getType("Bank Account")));
+        view.displayBudgets(model.queryBudgets(view.getType("Budget")));
+        view.displayLoans(model.queryLoans(view.getInstitution("Loan"), view.getLoanID()));
+        view.displaySpendings(model.querySpendings(view.getType("Spending")));
+        view.displayTransactions(model.queryTransactions(view.getFrame("Transactions")));
+        view.displayTrends(model.queryTrends(view.getFrame("Trends"), view.getType("Trends")));
+    }
 }

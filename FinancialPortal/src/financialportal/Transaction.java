@@ -6,7 +6,7 @@ package financialportal;
  *
  * @author Christian Kasel
  */
-public class Transaction {
+public class Transaction extends Information {
 
     private double amount;
     private String date;
@@ -21,18 +21,10 @@ public class Transaction {
      * @param institution the institution in which the transaction happened
      */
     public Transaction(double amount, String date, String institution) {
+        super(amount);
         this.amount = amount;
         this.date = date;
         this.institution = institution;
-    }
-
-    /**
-     * Function to get the amount of money (in US currency) of the transaction
-     *
-     * @return the amount of money (in US currency) of the transaction
-     */
-    public double getAmount() {
-        return amount;
     }
 
     /**
@@ -51,6 +43,12 @@ public class Transaction {
      */
     public String getInstitution() {
         return institution;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("\nTransactions:\n-------------------------");
+        System.out.println("Amount: " + amount + " Date: " + date + " Institution: " + institution);
     }
 
 }

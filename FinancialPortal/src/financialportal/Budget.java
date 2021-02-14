@@ -5,25 +5,26 @@ package financialportal;
  *
  * @author Christian Kasel
  */
-public class Budget {
+public class Budget extends Information{
 
+    private double amount;
     private String frame;
     private double paid;
-    private double total;
     private String type;
 
     /**
-     * Constructor to create a budget with the frame, paid, total, and type
+     * Constructor to create a budget with the frame, paid, amount, and type
      *
+     * @param amount the amount starting amount for the budget
      * @param frame the time in which this budget is applied
      * @param paid the amount the user has already paid
-     * @param total the total starting amount for the budget
      * @param type the type of budget
      */
-    public Budget(String frame, double paid, double total, String type) {
+    public Budget( double amount, String frame, double paid, String type) {
+        super(amount);
+        this.amount = amount;
         this.frame = frame;
         this.paid = paid;
-        this.total = total;
         this.type = type;
     }
 
@@ -46,21 +47,18 @@ public class Budget {
     }
 
     /**
-     * Function to return the total starting amount for the budget
-     *
-     * @return the total starting amount for the budget
-     */
-    public double getTotal() {
-        return total;
-    }
-
-    /**
      * Function to return the type of the budget
      *
      * @return the type of the budget
      */
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("\nBudgets:\n-------------------------");
+        System.out.println("Amount: " + amount + " Frame: " + frame + " Paid: " + paid +  " Type: " + type);
     }
 
 }

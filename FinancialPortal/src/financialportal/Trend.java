@@ -5,32 +5,24 @@ package financialportal;
  *
  * @author Christian Kasel
  */
-public class Trend {
+public class Trend extends Information {
 
     private double amount;
     private String frame;
-    private String group;
+    private String type;
 
     /**
-     * Constructor to create a trend with amount, frame, and group
+     * Constructor to create a trend with amount, frame, and type
      *
      * @param amount the total amount of the particular trend
      * @param frame the frame of the particular trend
-     * @param group the group or type of the particular trend
+     * @param type the type or type of the particular trend
      */
-    public Trend(double amount, String frame, String group) {
+    public Trend(double amount, String frame, String type) {
+        super(amount);
         this.amount = amount;
         this.frame = frame;
-        this.group = group;
-    }
-
-    /**
-     * Function to return the total amount of the trend
-     *
-     * @return the total amount of the trend
-     */
-    public double getAmount() {
-        return amount;
+        this.type = type;
     }
 
     /**
@@ -43,11 +35,17 @@ public class Trend {
     }
 
     /**
-     * Function to return the group or type of the particular trend
+     * Function to return the type or type of the particular trend
      *
-     * @return the group or type of the particular trend
+     * @return the type or type of the particular trend
      */
-    public String getGroup() {
-        return group;
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("\nTrends:\n-------------------------");
+        System.out.println("Amount: " + amount + " Frame: " + frame + " Type: " + type);
     }
 }

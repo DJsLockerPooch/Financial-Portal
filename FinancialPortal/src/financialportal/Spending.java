@@ -1,28 +1,27 @@
 package financialportal;
 
-import java.sql.Date;
-
 /**
  * Class that will hold all of the data for the spending table in our database.
  *
  * @author Christian Kasel
  */
-public class Spending {
+public class Spending extends Information{
 
+    private double amount;
     private String frame;
-    private double total;
     private String type;
 
     /**
-     * Constructor to create a spending with the frame, total and type
+     * Constructor to create a spending with the frame, amount and type
      *
+     * @param amount the amount amount of spending during the frame
      * @param frame the time in which the data has occurred
-     * @param total the total amount of spending during the frame
      * @param type the type of spending
      */
-    public Spending(String frame, double total, String type) {
+    public Spending(double amount, String frame, String type) {
+        super(amount);
+        this.amount = amount;
         this.frame = frame;
-        this.total = total;
         this.type = type;
     }
 
@@ -36,20 +35,17 @@ public class Spending {
     }
 
     /**
-     * Function to return the total amount of spending
-     *
-     * @return the total amount of spending
-     */
-    public double getTotal() {
-        return total;
-    }
-
-    /**
      * Function to return the type of the spending
      *
      * @return the type of the spending
      */
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("\nSpendings:\n-------------------------");
+        System.out.println("Amount: " + amount + " Frame: " + frame + " Type: " + type);
     }
 }

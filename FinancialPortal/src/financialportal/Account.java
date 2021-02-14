@@ -5,7 +5,7 @@ package financialportal;
  *
  * @author Christian Kasel
  */
-public class Account {
+public class Account extends Information{
 
     private double amount;
     private String institution;
@@ -20,18 +20,10 @@ public class Account {
      * institution
      */
     public Account(double amount, String institution, String type) {
+        super(amount);
         this.amount = amount;
         this.institution = institution;
         this.type = type;
-    }
-
-    /**
-     * Function to return the amount of money (in US currency) the account has
-     *
-     * @return the amount of money (in US currency) the account has
-     */
-    public double getAmount() {
-        return amount;
     }
 
     /**
@@ -51,5 +43,11 @@ public class Account {
      */
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("\nAcounts:\n-------------------------");
+        System.out.println("Amount: " + amount + " Institution: " + institution + " Type: " + type);
     }
 }
