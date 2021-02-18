@@ -97,7 +97,7 @@ public class FinancialPortalModel {
             statement.setInt(2, loanID);
             ResultSet rs = statement.executeQuery(); // Execture SQL statement into ResultSet
             while (rs.next()) { // Add each ResultSet to loans
-                loans.add(new Loan(rs.getDouble("amount"), rs.getString("due") , rs.getDouble("interest"), rs.getDouble("paid"), rs.getDouble("remaining")));
+                loans.add(new Loan(rs.getDouble("amount"), rs.getString("due"), rs.getDouble("interest"), rs.getInt("loanID"), rs.getDouble("paid")));
             }
         } catch (SQLException e) { // If an SQL exception is thrown we will catch it here
             System.err.println(e.getMessage());
@@ -132,7 +132,8 @@ public class FinancialPortalModel {
     /**
      * Function to query (select) the transaction table
      *
-     * @param date the date in which the transactions the user is looking for happened
+     * @param date the date in which the transactions the user is looking for
+     * happened
      * @return list of the transactions
      */
     public ArrayList<Transaction> queryTransactions(String date) {
@@ -148,7 +149,6 @@ public class FinancialPortalModel {
         } catch (SQLException e) { // If an SQL exception is thrown we will catch it here
             System.err.println(e.getMessage());
         }
-        // Return transactions
         return transactions;
     }
 

@@ -10,8 +10,8 @@ public class Loan extends Information {
     private double amount;
     private String due;
     private double interest;
+    private int loanID;
     private double paid;
-    private double remaining;
 
     /**
      * Constructor to create a loan with the interest, paid, amount, and
@@ -20,16 +20,16 @@ public class Loan extends Information {
      * @param amount the starting amount amount the loan was for
      * @param due the date in which the loan is due
      * @param interest the interest percent of the loan
+     * @param loanID
      * @param paid the amount the user has paid of the loan
-     * @param remaining the remaining amount of time left to pay off the loan
      */
-    public Loan(double amount, String due, double interest, double paid, double remaining) {
+    public Loan(double amount, String due, double interest, int loanID, double paid) {
         super(amount);
         this.amount = amount;
         this.due = due;
         this.interest = interest;
+        this.loanID = loanID;
         this.paid = paid;
-        this.remaining = remaining;
     }
 
     public String getDue() {
@@ -45,6 +45,10 @@ public class Loan extends Information {
         return interest;
     }
 
+    public int getLoanID() {
+        return loanID;
+    }
+
     /**
      * Function to return the amount paid towards the loan
      *
@@ -54,18 +58,9 @@ public class Loan extends Information {
         return paid;
     }
 
-    /**
-     * Function to return the time remaining to pay off the loan
-     *
-     * @return the time remaining to pay off the loan
-     */
-    public double getRemaining() {
-        return remaining;
-    }
-
     @Override
     public void print() {
         System.out.println("\nLoans:\n-------------------------");
-        System.out.println("Amount: " + amount + " Interest: " + interest + " Paid: " + paid + " Remaining: " + remaining);
+        System.out.println("Amount: " + amount + " Interest: " + interest + " LoanID: " + loanID + " Paid: " + paid);
     }
 }
