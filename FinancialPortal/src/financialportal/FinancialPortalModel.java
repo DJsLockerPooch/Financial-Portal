@@ -97,7 +97,7 @@ public class FinancialPortalModel {
             statement.setInt(2, loanID);
             ResultSet rs = statement.executeQuery(); // Execture SQL statement into ResultSet
             while (rs.next()) { // Add each ResultSet to loans
-                loans.add(new Loan(rs.getDouble("amount"), rs.getString("due"), rs.getDouble("interest"), rs.getInt("loanID"), rs.getDouble("paid")));
+                loans.add(new Loan(rs.getDouble("amount"), rs.getString("due"), rs.getString("institution"), rs.getDouble("interest"), rs.getInt("loanID"), rs.getDouble("paid")));
             }
         } catch (SQLException e) { // If an SQL exception is thrown we will catch it here
             System.err.println(e.getMessage());

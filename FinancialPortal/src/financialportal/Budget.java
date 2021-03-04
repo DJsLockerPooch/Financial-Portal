@@ -5,7 +5,7 @@ package financialportal;
  *
  * @author Christian Kasel
  */
-public class Budget extends Information{
+public class Budget extends Information {
 
     private double amount;
     private String frame;
@@ -20,7 +20,7 @@ public class Budget extends Information{
      * @param paid the amount the user has already paid
      * @param type the type of budget
      */
-    public Budget( double amount, String frame, double paid, String type) {
+    public Budget(double amount, String frame, double paid, String type) {
         super(amount);
         this.amount = amount;
         this.frame = frame;
@@ -58,7 +58,7 @@ public class Budget extends Information{
     @Override
     public void print() {
         System.out.println("\nBudgets:\n-------------------------");
-        System.out.println("Amount: " + amount + " Frame: " + frame + " Paid: " + paid +  " Type: " + type);
+        System.out.println("Amount: " + amount + " Frame: " + frame + " Paid: " + paid + " Type: " + type);
     }
 
 }

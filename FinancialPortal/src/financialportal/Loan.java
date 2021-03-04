@@ -9,6 +9,7 @@ public class Loan extends Information {
 
     private double amount;
     private String due;
+    private String institution;
     private double interest;
     private int loanID;
     private double paid;
@@ -19,14 +20,16 @@ public class Loan extends Information {
      *
      * @param amount the starting amount amount the loan was for
      * @param due the date in which the loan is due
+     * @param institution
      * @param interest the interest percent of the loan
      * @param loanID
      * @param paid the amount the user has paid of the loan
      */
-    public Loan(double amount, String due, double interest, int loanID, double paid) {
+    public Loan(double amount, String due, String institution, double interest, int loanID, double paid) {
         super(amount);
         this.amount = amount;
         this.due = due;
+        this.institution = institution;
         this.interest = interest;
         this.loanID = loanID;
         this.paid = paid;
@@ -34,6 +37,10 @@ public class Loan extends Information {
 
     public String getDue() {
         return due;
+    }
+
+    public String getInstitution() {
+        return institution;
     }
 
     /**

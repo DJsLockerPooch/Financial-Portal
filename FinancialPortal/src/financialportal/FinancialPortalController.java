@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
- * Class that will determine how the model (database) will interact with the
+ * Class that will determine how the database (model) will interact with the
  * user (view)
  *
  * @author Christian Kasel
@@ -70,8 +70,9 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveBudgets(FinancialPortalModel model, FinancialPortalView view) {
+        view.removeGraph(view.getPanel("budget"));
         String type = view.getInfo("type", "budget");
-        view.inputDataIntoBudgetsTable(model.queryBudgets(type));
+        view.addBarGraph(model.queryBudgets(type));
     }
 
     /**
@@ -129,6 +130,6 @@ public class FinancialPortalController {
     public static void saveTrends(FinancialPortalModel model, FinancialPortalView view) {
         String frame = view.getInfo("frame of reference", "trend");
         String type = view.getInfo("type", "trend");
-        view.inputDataIntoTrendsTable(model.queryTrends(frame, type));
+        view.addLineGraph(model.queryTrends(frame, type));
     }
 }
