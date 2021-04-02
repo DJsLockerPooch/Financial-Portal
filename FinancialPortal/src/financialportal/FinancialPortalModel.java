@@ -61,15 +61,17 @@ public class FinancialPortalModel {
     /**
      * Function to query (select) the budget table
      *
+     * @param frame the frame in which these users requested budgets occurred
      * @param type the type of budget the user is looking for
      * @return list of the budgets
      */
-    public ArrayList<Budget> queryBudgets(String type) {
+    public ArrayList<Budget> queryBudgets(String frame, String type) {
         ArrayList<Budget> budgets = new ArrayList<>(); // Create ArrayList of budgets
         try {
-            String query = "select amount, frame, paid, type from Budgets where Budgets.Type == ?"; // Create SQL statement to select everything from budget table
+            String query = "select amount, frame, paid, type from Budgets where Budgets.Type == ? and Budgets.Frame == ?"; // Create SQL statement to select everything from budget table
             PreparedStatement statement = conn.prepareStatement(query); // Sanatizing our SQL in case of SQL injection
             statement.setString(1, type);
+            statement.setString(2, frame);
             ResultSet rs = statement.executeQuery(); // Execture SQL statement into ResultSet
             while (rs.next()) { // Add each ResultSet to budgets
                 budgets.add(new Budget(rs.getDouble("amount"), rs.getString("frame"), rs.getDouble("paid"), rs.getString("type")));
@@ -109,15 +111,15 @@ public class FinancialPortalModel {
     /**
      * Function to query (select) the spendings table
      *
-     * @param type the type of spending the user would like to get
+     * @param frame the type of spending the user would like to get
      * @return list of the spendings
      */
-    public ArrayList<Spending> querySpendings(String type) {
+    public ArrayList<Spending> querySpendings(String frame) {
         ArrayList<Spending> spendings = new ArrayList<>(); // Create ArrayList of spendings
         try {
-            String query = "select amount, frame, type from Spendings where Spendings.Type == ?"; // Create SQL statement to select everything from spendings table
+            String query = "select amount, frame, type from Spendings where Spendings.Frame == ?"; // Create SQL statement to select everything from spendings table
             PreparedStatement statement = conn.prepareStatement(query); // Sanatizing our SQL in case of SQL injection
-            statement.setString(1, type);
+            statement.setString(1, frame);
             ResultSet rs = statement.executeQuery(); // Execture SQL statement into ResultSet
             while (rs.next()) { // Add each ResultSet to spendings
                 spendings.add(new Spending(rs.getDouble("amount"), rs.getString("frame"), rs.getString("type")));
@@ -156,19 +158,20 @@ public class FinancialPortalModel {
      * Function to query (select) the trend table
      *
      * @param frame the frame in which these users requested trends occurred
-     * @param type the type of trend the user requested
      * @return list of the trends
      */
-    public ArrayList<Trend> queryTrends(String frame, String type) {
+    public ArrayList<Trend> queryTrends(String frame) {
         ArrayList<Trend> trends = new ArrayList<>(); // Create ArrayList of trends
         try {
-            String query = "select amount, frame, type from Trends where Trends.Frame == ? and Trends.Type == ?"; // Create SQL statement to select everything from trend table
+            String query = "select * FROM Trends where Trends.TrendYear == ?"; // Create SQL statement to select everything from trend table
             PreparedStatement statement = conn.prepareStatement(query); // Sanatizing our SQL in case of SQL injection
             statement.setString(1, frame);
-            statement.setString(2, type);
             ResultSet rs = statement.executeQuery(); // Execture SQL statement into ResultSet
             while (rs.next()) { // Add each ResultSet to trends
-                trends.add(new Trend(rs.getDouble("amount"), rs.getString("frame"), rs.getString("type")));
+                String mon = rs.getString("month");
+                int day = rs.getInt("day");
+                int year = rs.getInt("trendyear");
+                trends.add(new Trend(rs.getDouble("amount"), mon + " " + day + " " + year, rs.getString("type")));
             }
         } catch (SQLException e) { // If an SQL exception is thrown we will catch it here
             System.err.println(e.getMessage());

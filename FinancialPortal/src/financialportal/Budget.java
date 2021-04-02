@@ -1,5 +1,11 @@
 package financialportal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Class that will hold all of the data for the budget table in our database.
  *
@@ -11,6 +17,7 @@ public class Budget extends Information {
     private String frame;
     private double paid;
     private String type;
+    private String sdf;
 
     /**
      * Constructor to create a budget with the frame, paid, amount, and type
@@ -26,6 +33,23 @@ public class Budget extends Information {
         this.frame = frame;
         this.paid = paid;
         this.type = type;
+        SimpleDateFormat sdf1 = new SimpleDateFormat("MMM dd yyyy");
+        Date d1 = null;
+        try {
+            d1 = sdf1.parse(frame);
+        } catch (ParseException ex) {
+            Logger.getLogger(Spending.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.sdf = sdf1.format(d1);
+    }
+
+    /**
+     * Function to return the simple date format MMM DD YYYY
+     *
+     * @return the simple date format MMM DD YYYY
+     */
+    public String getSDF() {
+        return sdf;
     }
 
     /**
@@ -55,10 +79,13 @@ public class Budget extends Information {
         return type;
     }
 
+    /**
+     * Function to print out the budgets own information
+     */
     @Override
     public void print() {
         System.out.println("\nBudgets:\n-------------------------");
-        System.out.println("Amount: " + amount + " Frame: " + frame + " Paid: " + paid + " Type: " + type);
+        System.out.println("Amount: " + amount + " Frame: " + sdf + " Paid: " + paid + " Type: " + type);
     }
 
 }

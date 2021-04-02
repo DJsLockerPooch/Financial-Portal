@@ -1,6 +1,7 @@
 package financialportal;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -8,7 +9,11 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.CategoryToPieDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+import org.jfree.util.TableOrder;
 
 /**
  * View of the Financial Portal project. This class simply displays the page(s)
@@ -34,14 +39,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        buttons = new ArrayList<>();
-        buttons.add(accountsPageTitleButton);
-        buttons.add(budgetsPageTitleButton);
-        buttons.add(loansPageTitleButton);
-        buttons.add(spendingsPageTitleButton);
-        buttons.add(transactionsPageTitleButton);
-        buttons.add(trendsPageTitleButton);
-
         accountsPageButton = new javax.swing.JMenuItem();
         accountsPagePanel = new javax.swing.JPanel();
         accountsPagePanelTitle = new javax.swing.JLabel();
@@ -64,14 +61,12 @@ public class FinancialPortalView extends javax.swing.JFrame {
         homePageTitle = new javax.swing.JLabel();
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane7 = new javax.swing.JScrollPane();
 
         loansPageButton = new javax.swing.JMenuItem();
         loansPageGraphPanel = new javax.swing.JPanel();
         loansPagePanel = new javax.swing.JPanel();
-        loansPageTable = new javax.swing.JTable();
         loansPageTitle = new javax.swing.JLabel();
         loansPageTitleButton = new javax.swing.JButton();
         loansPageTitlePanel = new javax.swing.JPanel();
@@ -81,8 +76,8 @@ public class FinancialPortalView extends javax.swing.JFrame {
         quitButton = new javax.swing.JMenuItem();
 
         spendingsPageButton = new javax.swing.JMenuItem();
+        spendingsPageGraphPanel = new javax.swing.JPanel();
         spendingsPagePanel = new javax.swing.JPanel();
-        spendingsPageTable = new javax.swing.JTable();
         spendingsPageTitle = new javax.swing.JLabel();
         spendingsPageTitleButton = new javax.swing.JButton();
         spendingsPageTitlePanel = new javax.swing.JPanel();
@@ -232,36 +227,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
         spendingsPageTitlePanel.add(spendingsPageTitleButton);
 
         spendingsPagePanel.add(spendingsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
-
-        spendingsPageTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null},
-                    {null, null, null},
-                    {null, null, null},
-                    {null, null, null}
-                },
-                new String[]{
-                    "Amount", "Frame", "Type"
-                }
-        ) {
-            Class[] types = new Class[]{
-                java.lang.Double.class, java.lang.String.class, java.lang.String.class
-            };
-
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-        });
-        spendingsPageTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(spendingsPageTable);
-        if (spendingsPageTable.getColumnModel().getColumnCount() > 0) {
-            spendingsPageTable.getColumnModel().getColumn(0).setResizable(false);
-            spendingsPageTable.getColumnModel().getColumn(1).setResizable(false);
-            spendingsPageTable.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        spendingsPagePanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        spendingsPagePanel.add(spendingsPageGraphPanel, java.awt.BorderLayout.CENTER);
 
         /**
          * Adding Spendings Page
@@ -392,6 +358,14 @@ public class FinancialPortalView extends javax.swing.JFrame {
         setJMenuBar(menuBar);
 
         pack();
+        
+        buttons = new ArrayList<>();
+        buttons.add(accountsPageTitleButton);
+        buttons.add(budgetsPageTitleButton);
+        buttons.add(loansPageTitleButton);
+        buttons.add(spendingsPageTitleButton);
+        buttons.add(transactionsPageTitleButton);
+        buttons.add(trendsPageTitleButton);
     }
 
     /**
@@ -407,16 +381,16 @@ public class FinancialPortalView extends javax.swing.JFrame {
      * Function to create a bar graph based on the ArrayList of budgets passed
      * into the parameter
      *
-     * @param budgets the array list of budgets the graph will be built around
+     * @param spendings the array list of budgets the graph will be built around
      */
-    public void addBarGraph(ArrayList<Budget> budgets) {
+    public void addBarGraph(ArrayList<Spending> spendings) {
         DefaultCategoryDataset data = new DefaultCategoryDataset();
-        budgets.forEach((b) -> {
-            data.addValue(b.getAmount(), b.getType(), b.getFrame());
+        spendings.forEach((s) -> {
+            data.addValue(s.getAmount(), s.getType(), s.getSDF());
         });
-        JFreeChart chart = ChartFactory.createBarChart("Budgets Graph", "Type", "Amount", data);
+        JFreeChart chart = ChartFactory.createBarChart("Spendings Graph for " + spendings.get(0).getSDF(), "Type", "Amount", data);
         ChartPanel panel = new ChartPanel(chart);
-        budgetsPageGraphPanel.add(panel);
+        spendingsPageGraphPanel.add(panel);
     }
 
     /**
@@ -428,11 +402,29 @@ public class FinancialPortalView extends javax.swing.JFrame {
     public void addLineGraph(ArrayList<Trend> trends) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         trends.forEach((t) -> {
-            dataset.addValue(t.getAmount(), t.getType(), t.getFrame());
+            dataset.addValue(t.getAmount(), t.getType(), t.getSDF());
         });
-        JFreeChart chart = ChartFactory.createLineChart("Trends Graph", "Frame", "Type", dataset);
+        JFreeChart chart = ChartFactory.createLineChart("Trends Graph for " + trends.get(0).getFrame().substring(trends.get(0).getFrame().length() - 4), "Frame", "Type", dataset);
         ChartPanel panel = new ChartPanel(chart);
         trendsPageGraphPanel.add(panel);
+    }
+
+    /**
+     * Function to create a bar graph based on the ArrayList of trends passed
+     * into the parameter
+     *
+     * @param budgets the array list of trends the graph will be built around
+     */
+    public void addRingGraph(ArrayList<Budget> budgets) {
+        DefaultPieDataset pieData = new DefaultPieDataset();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        budgets.forEach((b) -> {
+            pieData.setValue(b.getType(), b.getAmount());
+            pieData.setValue(b.getType() + " Remaining", b.getAmount() - b.getPaid());
+        });
+        JFreeChart chart = ChartFactory.createRingChart("Budgets Graph for " + budgets.get(0).getFrame(), pieData, false, true, false);
+        ChartPanel panel = new ChartPanel(chart);
+        budgetsPageGraphPanel.add(panel);
     }
 
     /**
@@ -529,37 +521,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
-     * Function that takes an array list of loans and puts each loan into the
-     * loans table
-     *
-     * @param loans array list of loans to be put into the loans table
-     */
-    public void inputDataIntoLoansTable(ArrayList<Loan> loans) {
-        for (int i = 0; i < loans.size(); i++) {
-            Loan l = loans.get(i);
-            DefaultTableModel model = (DefaultTableModel) loansPageTable.getModel();
-            Object[] list = {l.getAmount(), l.getDue(), l.getInstitution(), l.getInterest(), l.getLoanID(), l.getPaid()};
-            model.addRow(list);
-        }
-    }
-
-    /**
-     * Function that takes an array list of spendings and puts each spending
-     * into the spendings table
-     *
-     * @param spendings array list of spendings to be put into the spendings
-     * table
-     */
-    public void inputDataIntoSpendingsTable(ArrayList<Spending> spendings) {
-        for (int i = 0; i < spendings.size(); i++) {
-            Spending s = spendings.get(i);
-            DefaultTableModel model = (DefaultTableModel) spendingsPageTable.getModel();
-            Object[] list = {s.getAmount(), s.getFrame(), s.getType()};
-            model.addRow(list);
-        }
-    }
-
-    /**
      * Function that takes an array list of transactions and puts each
      * transaction into the transaction table
      *
@@ -570,7 +531,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             DefaultTableModel model = (DefaultTableModel) transactionsTable.getModel();
-            Object[] list = {t.getAmount(), t.getDate(), t.getInstitution()};
+            Object[] list = {t.getAmount(), t.getFrame(), t.getInstitution()};
             model.addRow(list);
         }
     }
@@ -676,13 +637,11 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JTextArea homePageTextArea;
     private javax.swing.JLabel homePageTitle;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JMenuItem loansPageButton;
     private javax.swing.JPanel loansPageGraphPanel;
     private javax.swing.JPanel loansPagePanel;
-    private javax.swing.JTable loansPageTable;
     private javax.swing.JLabel loansPageTitle;
     private javax.swing.JButton loansPageTitleButton;
     private javax.swing.JPanel loansPageTitlePanel;
@@ -690,8 +649,8 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JMenu pagesButton;
     private javax.swing.JMenuItem quitButton;
     private javax.swing.JMenuItem spendingsPageButton;
+    private javax.swing.JPanel spendingsPageGraphPanel;
     private javax.swing.JPanel spendingsPagePanel;
-    private javax.swing.JTable spendingsPageTable;
     private javax.swing.JLabel spendingsPageTitle;
     private javax.swing.JButton spendingsPageTitleButton;
     private javax.swing.JPanel spendingsPageTitlePanel;

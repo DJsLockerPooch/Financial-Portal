@@ -72,7 +72,8 @@ public class FinancialPortalController {
     public static void saveBudgets(FinancialPortalModel model, FinancialPortalView view) {
         view.removeGraph(view.getPanel("budget"));
         String type = view.getInfo("type", "budget");
-        view.addBarGraph(model.queryBudgets(type));
+        String frame = view.getInfo("frame of reference", "budget");
+        view.addRingGraph(model.queryBudgets(frame, type));
     }
 
     /**
@@ -87,7 +88,6 @@ public class FinancialPortalController {
     public static void saveLoans(FinancialPortalModel model, FinancialPortalView view) {
         String inst = view.getInfo("institution", "loans");
         int loanID = (Integer.parseInt(view.getInfo("loan ID", "loans")));
-        view.inputDataIntoLoansTable(model.queryLoans(inst, loanID));
     }
 
     /**
@@ -100,8 +100,8 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveSpendings(FinancialPortalModel model, FinancialPortalView view) {
-        String type = view.getInfo("type", "spending");
-        view.inputDataIntoSpendingsTable(model.querySpendings(type));
+        String frame = view.getInfo("frame of reference", "spending");
+        view.addBarGraph(model.querySpendings(frame));
     }
 
     /**
@@ -128,8 +128,7 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveTrends(FinancialPortalModel model, FinancialPortalView view) {
-        String frame = view.getInfo("frame of reference", "trend");
-        String type = view.getInfo("type", "trend");
-        view.addLineGraph(model.queryTrends(frame, type));
+        String frame = view.getInfo("year", "trend");
+        view.addLineGraph(model.queryTrends(frame));
     }
 }

@@ -1,13 +1,16 @@
 package financialportal;
 
-import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.CategoryToPieDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.PieDataset;
+import org.jfree.util.TableOrder;
 
 /**
  *
@@ -58,34 +61,68 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         accountsPageTitlePanel = new javax.swing.JPanel();
         accountsPagePanelTitle = new javax.swing.JLabel();
         accountsPageTitleButton = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        accountsPageTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
         budgetsPagePanel = new javax.swing.JPanel();
         budgetsPageTitlePanel = new javax.swing.JPanel();
         budgetsPageTitle = new javax.swing.JLabel();
         budgetsPageTitleButton = new javax.swing.JButton();
+        budgetsPageComboBox = new javax.swing.JComboBox<>();
         budgetsPageGraphPanel = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextArea5 = new javax.swing.JTextArea();
         loansPagePanel = new javax.swing.JPanel();
         loansPageTitlePanel = new javax.swing.JPanel();
         loansPageTitle = new javax.swing.JLabel();
         loansPageTitleButton = new javax.swing.JButton();
         loansPageTablePanel = new javax.swing.JPanel();
+        loanPageLoanInstitutionInfo = new javax.swing.JLabel();
+        loanPageLoanAmountInfo = new javax.swing.JLabel();
+        loanPageLoanInfo = new javax.swing.JLabel();
+        loanPageLowPayment = new javax.swing.JLabel();
+        loanPagePaymentSlider = new javax.swing.JSlider();
+        loanPageHighPayment = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         spendingsPagePanel = new javax.swing.JPanel();
         spendingsPageTitlePanel = new javax.swing.JPanel();
         spendingsPageTitle = new javax.swing.JLabel();
         spendingsPageTitleButton = new javax.swing.JButton();
-        spendingsPageTablePanel = new javax.swing.JPanel();
+        spendingsPageGraphPanel = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextArea7 = new javax.swing.JTextArea();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTextArea8 = new javax.swing.JTextArea();
         transactionsPagePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        transactionsTable = new javax.swing.JTable();
         transactionsPageTitlePanel = new javax.swing.JPanel();
         transactionsPageTitle = new javax.swing.JLabel();
         transactionsPageTitleButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTextArea9 = new javax.swing.JTextArea();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTextArea10 = new javax.swing.JTextArea();
         trendsPagePanel = new javax.swing.JPanel();
         trendsPageTitlePanel = new javax.swing.JPanel();
         trendsPageTitle = new javax.swing.JLabel();
         trendsPageTitleButton = new javax.swing.JButton();
-        trendsPageTablePanel = new javax.swing.JPanel();
+        trendsPageGraphPanel = new javax.swing.JPanel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jTextArea11 = new javax.swing.JTextArea();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTextArea12 = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileButton = new javax.swing.JMenu();
         quitButton = new javax.swing.JMenuItem();
@@ -99,12 +136,11 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         trendsPageButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 625));
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 625));
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        tabbedPane.setPreferredSize(new java.awt.Dimension(1200, 645));
+        tabbedPane.setPreferredSize(new java.awt.Dimension(1200, 625));
         tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 tabbedPaneStateChanged(evt);
@@ -121,8 +157,10 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         homePageTextArea.setColumns(20);
         homePageTextArea.setLineWrap(true);
         homePageTextArea.setRows(5);
-        homePageTextArea.setText("Hello and welcome to your personal financial portal! At the top of the page you can see a list of tabs, which all have your financial data displayed in a convenient way for you. This portal is meant to be a tool for you to use to make the most informed decisions financially that you can.");
+        homePageTextArea.setText("   Hello and welcome to your personal financial portal! At the top of the page you can see a list of tabs, which all have your financial data displayed in a convenient way for you. This portal is meant to be a tool for you to use to make the most informed decisions financially that you can.\n\n   Each tab has a button at the top for you to select the information you seek (institution, date, type, etc.). As of right now, it is expected of the user to know exactly what data they are looking for. The goal is to input all the data from the data source (a database for right now) and create a drop down list of all the information you seek to take away the need for the user to know exactly what they are looking for.\n\n   The pages and their functions are as follows:\n\n  - Accounts page: Centralized location for user's accounts (savings, checking, retirement, etc.)\n  - Budgets page: Display a user's payments and how much more they need to complete the payments\n  - Loans page: Display/interact with the user's loans/loan payoff plan\n  - Spendings page: Display the user's spendings (based on groups)\n  - Transactions page: Displays the user's transactions as a list\n  - Trends page: Displays groupings similar to the spendings over the span of time");
         homePageTextArea.setWrapStyleWord(true);
+        homePageTextArea.setDragEnabled(false);
+        homePageTextArea.setPreferredSize(new java.awt.Dimension(600, 625));
         jScrollPane3.setViewportView(homePageTextArea);
 
         homePagePanel.add(jScrollPane3, java.awt.BorderLayout.CENTER);
@@ -144,7 +182,11 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
 
         accountsPagePanel.add(accountsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
 
-        accountsPageTable.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 625));
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(350, 535));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -163,14 +205,46 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(accountsPageTable);
-        if (accountsPageTable.getColumnModel().getColumnCount() > 0) {
-            accountsPageTable.getColumnModel().getColumn(0).setResizable(false);
-            accountsPageTable.getColumnModel().getColumn(1).setResizable(false);
-            accountsPageTable.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.setPreferredSize(new java.awt.Dimension(400, 625));
+        jTable1.setSize(new java.awt.Dimension(400, 625));
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        accountsPagePanel.add(jScrollPane7, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jScrollPane2);
+
+        accountsPagePanel.add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(400, 625));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("This is your accounts page! Go ahead and select the \"Select Info\" button and type in the data you wish to see! Displayed will be a list of all the accouts at the institution in which you requested.");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setDragEnabled(false);
+        jTextArea1.setPreferredSize(new java.awt.Dimension(300, 500));
+        jTextArea1.setSize(new java.awt.Dimension(300, 500));
+        jScrollPane1.setViewportView(jTextArea1);
+
+        accountsPagePanel.add(jScrollPane1, java.awt.BorderLayout.LINE_START);
+
+        jScrollPane6.setPreferredSize(new java.awt.Dimension(400, 625));
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setLineWrap(true);
+        jTextArea3.setRows(5);
+        jTextArea3.setText("This is your accounts page! Go ahead and select the \"Select Info\" button and type in the data you wish to see! Displayed will be a list of all the accouts at the institution in which you requested.");
+        jTextArea3.setWrapStyleWord(true);
+        jTextArea3.setPreferredSize(new java.awt.Dimension(300, 500));
+        jTextArea3.setSize(new java.awt.Dimension(300, 500));
+        jScrollPane6.setViewportView(jTextArea3);
+
+        accountsPagePanel.add(jScrollPane6, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Accounts", accountsPagePanel);
 
@@ -179,7 +253,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         budgetsPageTitle.setText("Budgets Page");
         budgetsPageTitlePanel.add(budgetsPageTitle);
 
-        budgetsPageTitleButton.setText("Select Info");
+        budgetsPageTitleButton.setText("Load Data");
         budgetsPageTitleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 budgetsPageTitleButtonActionPerformed(evt);
@@ -187,8 +261,48 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         });
         budgetsPageTitlePanel.add(budgetsPageTitleButton);
 
+        budgetsPageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                budgetsPageComboBoxActionPerformed(evt);
+            }
+        });
+        budgetsPageTitlePanel.add(budgetsPageComboBox);
+
         budgetsPagePanel.add(budgetsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
+
+        budgetsPageGraphPanel.setPreferredSize(new java.awt.Dimension(280, 500));
+        budgetsPageGraphPanel.setSize(new java.awt.Dimension(280, 500));
         budgetsPagePanel.add(budgetsPageGraphPanel, java.awt.BorderLayout.CENTER);
+
+        jScrollPane7.setPreferredSize(new java.awt.Dimension(275, 500));
+        jScrollPane7.setSize(new java.awt.Dimension(300, 500));
+
+        jTextArea4.setEditable(false);
+        jTextArea4.setColumns(20);
+        jTextArea4.setLineWrap(true);
+        jTextArea4.setRows(5);
+        jTextArea4.setText("   Hello and welcome to your budgeting page! On this page you will see a type of budget, the total amout for the month and the amount left to be paid.\n\n   To load the data, please selec the \"Load Data\" button. Then a graph should appear with the first budget. The drop down menu should fill up with all of the budgets you can choose from. Just select the budget you wish to see, and the graph of that budget should appear in the middle section.");
+        jTextArea4.setWrapStyleWord(true);
+        jTextArea4.setPreferredSize(new java.awt.Dimension(300, 500));
+        jTextArea4.setSize(new java.awt.Dimension(300, 500));
+        jScrollPane7.setViewportView(jTextArea4);
+
+        budgetsPagePanel.add(jScrollPane7, java.awt.BorderLayout.LINE_START);
+
+        jScrollPane8.setPreferredSize(new java.awt.Dimension(275, 500));
+        jScrollPane8.setSize(new java.awt.Dimension(300, 500));
+
+        jTextArea5.setEditable(false);
+        jTextArea5.setColumns(20);
+        jTextArea5.setLineWrap(true);
+        jTextArea5.setRows(5);
+        jTextArea5.setText("   The red color represents how much of the monthly budget you have paid so far. The blue color represents how much of the budget you have left to pay off.\n\n   If only one color is shown, then either all or none of the budget needs to be paid for.");
+        jTextArea5.setWrapStyleWord(true);
+        jTextArea5.setPreferredSize(new java.awt.Dimension(275, 500));
+        jTextArea5.setSize(new java.awt.Dimension(300, 500));
+        jScrollPane8.setViewportView(jTextArea5);
+
+        budgetsPagePanel.add(jScrollPane8, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Budgets", budgetsPagePanel);
 
@@ -206,7 +320,53 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         loansPageTitlePanel.add(loansPageTitleButton);
 
         loansPagePanel.add(loansPageTitlePanel, java.awt.BorderLayout.PAGE_START);
+
+        loansPageTablePanel.setLayout(new java.awt.GridLayout(3, 3));
+
+        loanPageLoanInstitutionInfo.setText("jLabel1");
+        loansPageTablePanel.add(loanPageLoanInstitutionInfo);
+
+        loanPageLoanAmountInfo.setText("jLabel2");
+        loansPageTablePanel.add(loanPageLoanAmountInfo);
+
+        loanPageLoanInfo.setText("jLabel6");
+        loansPageTablePanel.add(loanPageLoanInfo);
+
+        loanPageLowPayment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loanPageLowPayment.setText("0");
+        loansPageTablePanel.add(loanPageLowPayment);
+
+        loanPagePaymentSlider.setEnabled(false);
+        loanPagePaymentSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                loanPagePaymentSliderStateChanged(evt);
+            }
+        });
+        loansPageTablePanel.add(loanPagePaymentSlider);
+
+        loanPageHighPayment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loanPageHighPayment.setText("-");
+        loansPageTablePanel.add(loanPageHighPayment);
+
+        jLabel8.setText("jLabel8");
+        loansPageTablePanel.add(jLabel8);
+
+        jLabel7.setText("jLabel7");
+        loansPageTablePanel.add(jLabel7);
+
+        jLabel4.setText("jLabel4");
+        loansPageTablePanel.add(jLabel4);
+
         loansPagePanel.add(loansPageTablePanel, java.awt.BorderLayout.CENTER);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        jTextArea2.setWrapStyleWord(true);
+        jScrollPane5.setViewportView(jTextArea2);
+
+        loansPagePanel.add(jScrollPane5, java.awt.BorderLayout.LINE_START);
 
         tabbedPane.addTab("Loans", loansPagePanel);
 
@@ -224,37 +384,23 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         spendingsPageTitlePanel.add(spendingsPageTitleButton);
 
         spendingsPagePanel.add(spendingsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
-        spendingsPagePanel.add(spendingsPageTablePanel, java.awt.BorderLayout.CENTER);
+        spendingsPagePanel.add(spendingsPageGraphPanel, java.awt.BorderLayout.CENTER);
+
+        jTextArea7.setColumns(20);
+        jTextArea7.setRows(5);
+        jScrollPane10.setViewportView(jTextArea7);
+
+        spendingsPagePanel.add(jScrollPane10, java.awt.BorderLayout.LINE_START);
+
+        jTextArea8.setColumns(20);
+        jTextArea8.setRows(5);
+        jScrollPane11.setViewportView(jTextArea8);
+
+        spendingsPagePanel.add(jScrollPane11, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Spendings", spendingsPagePanel);
 
         transactionsPagePanel.setLayout(new java.awt.BorderLayout());
-
-        transactionsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Amount", "Date", "Institution"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Double.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        transactionsTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(transactionsTable);
-        if (transactionsTable.getColumnModel().getColumnCount() > 0) {
-            transactionsTable.getColumnModel().getColumn(0).setResizable(false);
-            transactionsTable.getColumnModel().getColumn(1).setResizable(false);
-            transactionsTable.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        transactionsPagePanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         transactionsPageTitle.setText("Transactions Page");
         transactionsPageTitlePanel.add(transactionsPageTitle);
@@ -268,6 +414,49 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         transactionsPageTitlePanel.add(transactionsPageTitleButton);
 
         transactionsPagePanel.add(transactionsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Amount", "Date", "Institution"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+            jTable2.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        jPanel2.add(jScrollPane4);
+
+        transactionsPagePanel.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jTextArea9.setColumns(20);
+        jTextArea9.setRows(5);
+        jScrollPane12.setViewportView(jTextArea9);
+
+        transactionsPagePanel.add(jScrollPane12, java.awt.BorderLayout.LINE_START);
+
+        jTextArea10.setColumns(20);
+        jTextArea10.setRows(5);
+        jScrollPane13.setViewportView(jTextArea10);
+
+        transactionsPagePanel.add(jScrollPane13, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Transactions", transactionsPagePanel);
 
@@ -285,7 +474,19 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         trendsPageTitlePanel.add(trendsPageTitleButton);
 
         trendsPagePanel.add(trendsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
-        trendsPagePanel.add(trendsPageTablePanel, java.awt.BorderLayout.CENTER);
+        trendsPagePanel.add(trendsPageGraphPanel, java.awt.BorderLayout.CENTER);
+
+        jTextArea11.setColumns(20);
+        jTextArea11.setRows(5);
+        jScrollPane14.setViewportView(jTextArea11);
+
+        trendsPagePanel.add(jScrollPane14, java.awt.BorderLayout.LINE_START);
+
+        jTextArea12.setColumns(20);
+        jTextArea12.setRows(5);
+        jScrollPane15.setViewportView(jTextArea12);
+
+        trendsPagePanel.add(jScrollPane15, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Trends", trendsPagePanel);
 
@@ -414,169 +615,158 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     }//GEN-LAST:event_tabbedPaneStateChanged
 
     private void accountsPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountsPageTitleButtonActionPerformed
-        setAccInst(getInfo("institution", "account"));
-        setAccType(getInfo("type", "account"));
-        if (!notHome) {
-            notHome = true;
-        }
 
     }//GEN-LAST:event_accountsPageTitleButtonActionPerformed
 
     private void budgetsPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetsPageTitleButtonActionPerformed
-        if (!notHome) {
-            notHome = true;
-        }
-        setBudType(getInfo("type", "budget"));
-
-        addBarGraph();
+        insertIntoBudgetsCombo();
+        addBarGraph(getSpendings());
     }//GEN-LAST:event_budgetsPageTitleButtonActionPerformed
 
     private void loansPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansPageTitleButtonActionPerformed
-        if (!notHome) {
-            notHome = true;
-        }
-        setLoanInst(getInfo("institution", "loans"));
-        setLoanID(Integer.parseInt(getInfo("loan ID", "loans")));
+        loanPagePaymentSlider.enable();
+        ArrayList<Loan> loans = new ArrayList<>();
+        loans.add(new Loan(1000, "May 1 2020", "Centris", 3.4, 1, 500));
+        inputLoanIntoLoanPage(loans);
     }//GEN-LAST:event_loansPageTitleButtonActionPerformed
 
     private void spendingsPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spendingsPageTitleButtonActionPerformed
-        if (!notHome) {
-            notHome = true;
-        }
-        setSpendType(getInfo("type", "spending"));
-//        addLineGraph();
+        addRingChart();
     }//GEN-LAST:event_spendingsPageTitleButtonActionPerformed
 
     private void transactionsPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsPageTitleButtonActionPerformed
-        if (!notHome) {
-            notHome = true;
-        }
-        setTransType(getInfo("frame of reference", "transaction"));
+
     }//GEN-LAST:event_transactionsPageTitleButtonActionPerformed
 
     private void trendsPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trendsPageTitleButtonActionPerformed
-        trendsPageTablePanel.removeAll();
-        if (!notHome) {
-            notHome = true;
-        }
-        setTrendFrame(getInfo("frame of reference", "trend"));
-        setTrendType(getInfo("type", "trend"));
+        trendsPageGraphPanel.removeAll();
         addLineGraph();
     }//GEN-LAST:event_trendsPageTitleButtonActionPerformed
 
-    public void addBarGraph() {
-        ArrayList<Budget> budgets = new ArrayList<>();
-        budgets.add(new Budget(600, "January 2020", 400, "Utilities"));
-        budgets.add(new Budget(500, "January 2020", 350, "Car Bill"));
-        budgets.add(new Budget(250, "January 2020", 75, "Food"));
-        budgets.add(new Budget(200, "January 2020", 150, "Water Bill"));
-        budgets.add(new Budget(400, "May 2020", 250, "Gas"));
-        budgets.add(new Budget(600, "February 2020", 400, "Utilities"));
-        budgets.add(new Budget(500, "February 2020", 350, "Car Bill"));
-        budgets.add(new Budget(250, "February 2020", 75, "Food"));
-        budgets.add(new Budget(200, "February 2020", 150, "Water Bill"));
-        budgets.add(new Budget(400, "February 2020", 250, "Gas"));
-        budgets.add(new Budget(600, "March 2020", 400, "Utilities"));
-        budgets.add(new Budget(500, "March 2020", 350, "Car Bill"));
-        budgets.add(new Budget(250, "March 2020", 75, "Food"));
-        budgets.add(new Budget(200, "March 2020", 150, "Water Bill"));
-        budgets.add(new Budget(400, "March 2020", 250, "Gas"));
-        budgets.add(new Budget(600, "April 2020", 400, "Utilities"));
-        budgets.add(new Budget(500, "April 2020", 350, "Car Bill"));
-        budgets.add(new Budget(250, "April 2020", 75, "Food"));
-        budgets.add(new Budget(200, "April 2020", 150, "Water Bill"));
-        budgets.add(new Budget(400, "April 2020", 250, "Gas"));
-        budgets.add(new Budget(600, "May 2020", 400, "Utilities"));
-        budgets.add(new Budget(500, "May 2020", 350, "Car Bill"));
-        budgets.add(new Budget(250, "May 2020", 75, "Food"));
-        budgets.add(new Budget(200, "May 2020", 150, "Water Bill"));
-        budgets.add(new Budget(400, "May 2020", 250, "Gas"));
-        DefaultCategoryDataset data = new DefaultCategoryDataset();
-        budgets.forEach((b) -> {
-            data.addValue(b.getAmount(), b.getType(), b.getFrame());
+    private void budgetsPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetsPageComboBoxActionPerformed
+        String text = (String) budgetsPageComboBox.getSelectedItem();
+        String[] split = text.split(", ");
+        ArrayList<Spending> spendings = getSpendings();
+        ArrayList<Spending> newSpendings = new ArrayList<>();
+        for (Spending s : spendings) {
+            if (s.getType().equals(split[0]) && s.getSDF().equals(split[1])) {
+                newSpendings.add(s);
+            }
+        }
+        addBarGraph(newSpendings);
+    }//GEN-LAST:event_budgetsPageComboBoxActionPerformed
+
+    private void loanPagePaymentSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_loanPagePaymentSliderStateChanged
+        double loanAmt = Double.parseDouble(loanPageLoanAmountInfo.getText());
+        int paymentAmt = loanPagePaymentSlider.getValue();
+        loanPageHighPayment.setText(String.valueOf(loanAmt * paymentAmt / 100));
+    }//GEN-LAST:event_loanPagePaymentSliderStateChanged
+
+    public ArrayList<Spending> getSpendings() {
+        ArrayList<Spending> spendings = new ArrayList<>();
+        spendings.add(new Spending(600, "January 1 2020", "Utilities"));
+        spendings.add(new Spending(500, "January 1 2020", "Car Bill"));
+        spendings.add(new Spending(250, "January 1 2020", "Food"));
+        spendings.add(new Spending(200, "January 1 2020", "Water Bill"));
+        spendings.add(new Spending(400, "January 1 2020", "Gas"));
+        spendings.add(new Spending(600, "January 2 2020", "Utilities"));
+        spendings.add(new Spending(500, "January 2 2020", "Car Bill"));
+        spendings.add(new Spending(250, "January 2 2020", "Food"));
+        spendings.add(new Spending(200, "January 2 2020", "Water Bill"));
+        spendings.add(new Spending(400, "January 2 2020", "Gas"));
+        spendings.add(new Spending(600, "March 1 2020", "Utilities"));
+        spendings.add(new Spending(500, "March 1 2020", "Car Bill"));
+        spendings.add(new Spending(250, "March 1 2020", "Food"));
+        spendings.add(new Spending(200, "March 1 2020", "Water Bill"));
+        spendings.add(new Spending(400, "March 1 2020", "Gas"));
+        spendings.add(new Spending(600, "April 1 2020", "Utilities"));
+        spendings.add(new Spending(500, "April 1 2020", "Car Bill"));
+        spendings.add(new Spending(250, "April 1 2020", "Food"));
+        spendings.add(new Spending(200, "April 1 2020", "Water Bill"));
+        spendings.add(new Spending(400, "April 1 2020", "Gas"));
+        spendings.add(new Spending(600, "May 1 2020", "Utilities"));
+        spendings.add(new Spending(500, "May 1 2020", "Car Bill"));
+        spendings.add(new Spending(250, "May 1 2020", "Food"));
+        spendings.add(new Spending(200, "May 1 2020", "Water Bill"));
+        spendings.add(new Spending(400, "May 1 2020", "Gas"));
+        return spendings;
+    }
+
+    public void insertIntoBudgetsCombo() {
+        ArrayList<Spending> spendings = getSpendings();
+        spendings.forEach((s) -> {
+            budgetsPageComboBox.addItem(s.getType() + ", " + s.getSDF());
         });
-        JFreeChart chart = ChartFactory.createBarChart("Budgets Graph for " + budgets.get(0).getFrame(), "Type", "Amount", data);
+    }
+
+    public void addBarGraph(ArrayList<Spending> spendings) {
+        budgetsPageGraphPanel.removeAll();
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+        spendings.forEach((Spending s) -> {
+            data.addValue(s.getAmount(), s.getType(), s.getSDF());
+        });
+        JFreeChart chart = ChartFactory.createBarChart("Budgets Graph for " + spendings.get(0).getFrame(), "Type", "Amount", data);
         ChartPanel panel = new ChartPanel(chart);
         budgetsPageGraphPanel.add(panel);
     }
 
     public void addLineGraph() {
         ArrayList<Trend> trends = new ArrayList<>();
-        trends.add(new Trend(100, "January 2020", "Food"));
-        trends.add(new Trend(200, "January 2020", "Gas"));
-        trends.add(new Trend(300, "January 2020", "Utilities"));
-        trends.add(new Trend(400, "January 2020", "Grocery"));
-        trends.add(new Trend(500, "January 2020", "Bills"));
-        trends.add(new Trend(600, "January 2020", "Movies"));
-        trends.add(new Trend(200, "May 2020", "Food"));
-        trends.add(new Trend(300, "May 2020", "Gas"));
-        trends.add(new Trend(400, "May 2020", "Utilities"));
-        trends.add(new Trend(500, "May 2020", "Grocery"));
-        trends.add(new Trend(600, "May 2020", "Bills"));
-        trends.add(new Trend(700, "May 2020", "Movies"));
+        trends.add(new Trend(100, "January 1 2020", "Food"));
+        trends.add(new Trend(200, "January 1 2020", "Gas"));
+        trends.add(new Trend(300, "January 1 2020", "Utilities"));
+        trends.add(new Trend(400, "January 1 2020", "Grocery"));
+        trends.add(new Trend(500, "January 1 2020", "Bills"));
+        trends.add(new Trend(600, "January 1 2020", "Movies"));
+        trends.add(new Trend(200, "May 1 2020", "Food"));
+        trends.add(new Trend(300, "May 1 2020", "Gas"));
+        trends.add(new Trend(400, "May 1 2020", "Utilities"));
+        trends.add(new Trend(500, "May 1 2020", "Grocery"));
+        trends.add(new Trend(600, "May 1 2020", "Bills"));
+        trends.add(new Trend(700, "May 1 2020", "Movies"));
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         trends.forEach((t) -> {
-            dataset.addValue(t.getAmount(), t.getType(), t.getFrame());
+            dataset.addValue(t.getAmount(), t.getType(), t.getSDF());
         });
         JFreeChart chart = ChartFactory.createLineChart("Trends Graph", "Frame", "Type", dataset);
         ChartPanel panel = new ChartPanel(chart);
-        trendsPagePanel.add(panel);
-        
-//        String[] types = new String[5];
-//        types[0] = "Utilities";
-//        types[1] = "Car Bill";
-//        types[2] = "Food";
-//        types[3] = "Water Bill";
-//        types[4] = "Gas";
-//        String[] months = new String[12];
-//        months[0] = "January";
-//        months[1] = "February";
-//        months[2] = "March";
-//        months[3] = "April";
-//        months[4] = "May";
-//        months[5] = "June";
-//        months[6] = "July";
-//        months[7] = "August";
-//        months[8] = "September";
-//        months[9] = "October";
-//        months[10] = "November";
-//        months[11] = "December";
-//        ArrayList<Spending> spendings = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            for (int j = 0; j < 12; j++) {
-//                spendings.add(new Spending((10 * i) * 10, months[j], types[i]));
-//            }
-//        }
-////        spendings.add(new Spending(600, "January", "Utilities"));
-////        spendings.add(new Spending(500, "March", "Car Bill"));
-////        spendings.add(new Spending(250, "May", "Food"));
-////        spendings.add(new Spending(200, "July", "Water Bill"));
-////        spendings.add(new Spending(400, "December", "Gas"));
-//        LineChartSample chart = new LineChartSample(spendings);
-//        ArrayList<Color> colors = new ArrayList<>();
-//        colors.add(Color.red);
-//        colors.add(Color.orange);
-//        colors.add(Color.yellow);
-//        colors.add(Color.green);
-//        colors.add(Color.blue);
-//        int j = 0;
-//        for (int i = 0; i < spendings.size(); i++) {
-//            Spending s = spendings.get(i);
-//            if (i < 12) {
-//                j = 0;
-//            } else if (i >= 12 && i < 24) {
-//                j = 1;
-//            } else if (i >= 24 && i < 36) {
-//                j = 2;
-//            } else if (i >= 36 && i < 48) {
-//                j = 3;
-//            } else if (i >= 48 && i < 60) {
-//                j = 4;
-//            }
-//            chart.addLine(colors.get(j), s);
-//        }
-//        spendingsPagePanel.add(chart);
-//        chart.show();
+        trendsPageGraphPanel.add(panel);
+    }
+
+    public void addPieChart() {
+        ArrayList<Budget> budgets = new ArrayList<>();
+        budgets.add(new Budget(200, "May 1 2020", 150, "Food"));
+        budgets.add(new Budget(300, "May 1 2020", 150, "Gas"));
+        DefaultCategoryDataset source = new DefaultCategoryDataset();
+        budgets.forEach((b) -> {
+            source.addValue(b.getPaid(), b.getSDF(), b.getType());
+        });
+        PieDataset dataset = new CategoryToPieDataset(source, TableOrder.BY_ROW, 0);
+        JFreeChart chart = ChartFactory.createPieChart("Budget Graph for " + budgets.get(0).getSDF(), dataset);
+        chart.removeLegend();
+        ChartPanel panel = new ChartPanel(chart);
+        spendingsPageGraphPanel.add(panel);
+    }
+
+    public void addRingChart() {
+        ArrayList<Budget> budgets = new ArrayList<>();
+        budgets.add(new Budget(200, "May 1 2020", 150, "Food"));
+        budgets.add(new Budget(50, "May 1 2020", 50, "Remaining"));
+        DefaultCategoryDataset source = new DefaultCategoryDataset();
+        budgets.forEach((b) -> {
+            source.addValue(b.getPaid(), b.getSDF(), b.getType());
+        });
+        PieDataset dataset = new CategoryToPieDataset(source, TableOrder.BY_ROW, 0);
+        JFreeChart chart = ChartFactory.createRingChart("Budget Graph for " + budgets.get(0).getSDF(), dataset, false, false, Locale.US);
+        chart.removeLegend();
+        ChartPanel panel = new ChartPanel(chart);
+        spendingsPageGraphPanel.add(panel);
+    }
+    
+    public void inputLoanIntoLoanPage(ArrayList<Loan> loans){
+        loanPageLoanAmountInfo.setText(String.valueOf(loans.get(0).getAmount()));
+        loanPageLoanInstitutionInfo.setText(String.valueOf(loans.get(0).getInstitution()));
+        loanPageLoanInfo.setText(String.valueOf(loans.get(0).getSDF()));
     }
 
     public ArrayList<JButton> getButtons() {
@@ -596,84 +786,8 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         return JOptionPane.showInputDialog("Please enter the " + obj + " you seek for your " + desInfo + ":");
     }
 
-    public boolean getNotHome() {
-        return notHome;
-    }
-
     public int getTabSelected() {
         return tabbedPane.getSelectedIndex();
-    }
-
-    public String getAccInst() {
-        return accInst;
-    }
-
-    public String getAccType() {
-        return accType;
-    }
-
-    public String getBudType() {
-        return budType;
-    }
-
-    public int getLoanID() {
-        return loanID;
-    }
-
-    public String getLoanInst() {
-        return loanInst;
-    }
-
-    public String getSpendType() {
-        return spendType;
-    }
-
-    public String getTransType() {
-        return transType;
-    }
-
-    public String getTrendFrame() {
-        return trendFrame;
-    }
-
-    public String getTrendType() {
-        return trendType;
-    }
-
-    public void setAccInst(String accInst) {
-        this.accInst = accInst;
-    }
-
-    public void setAccType(String accType) {
-        this.accType = accType;
-    }
-
-    public void setBudType(String budType) {
-        this.budType = budType;
-    }
-
-    public void setLoanID(int loanID) {
-        this.loanID = loanID;
-    }
-
-    public void setLoanInst(String loanInst) {
-        this.loanInst = loanInst;
-    }
-
-    public void setSpendType(String spendType) {
-        this.spendType = spendType;
-    }
-
-    public void setTransType(String transType) {
-        this.transType = transType;
-    }
-
-    public void setTrendFrame(String trendFrame) {
-        this.trendFrame = trendFrame;
-    }
-
-    public void setTrendType(String trendType) {
-        this.trendType = trendType;
     }
 
     /**
@@ -720,10 +834,10 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JMenuItem accountsPageButton;
     private javax.swing.JPanel accountsPagePanel;
     private javax.swing.JLabel accountsPagePanelTitle;
-    private javax.swing.JTable accountsPageTable;
     private javax.swing.JButton accountsPageTitleButton;
     private javax.swing.JPanel accountsPageTitlePanel;
     private javax.swing.JMenuItem budgetsPageButton;
+    private javax.swing.JComboBox<String> budgetsPageComboBox;
     private javax.swing.JPanel budgetsPageGraphPanel;
     private javax.swing.JPanel budgetsPagePanel;
     private javax.swing.JLabel budgetsPageTitle;
@@ -734,9 +848,44 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JPanel homePagePanel;
     private javax.swing.JTextArea homePageTextArea;
     private javax.swing.JLabel homePageTitle;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea10;
+    private javax.swing.JTextArea jTextArea11;
+    private javax.swing.JTextArea jTextArea12;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea5;
+    private javax.swing.JTextArea jTextArea7;
+    private javax.swing.JTextArea jTextArea8;
+    private javax.swing.JTextArea jTextArea9;
+    private javax.swing.JLabel loanPageHighPayment;
+    private javax.swing.JLabel loanPageLoanAmountInfo;
+    private javax.swing.JLabel loanPageLoanInfo;
+    private javax.swing.JLabel loanPageLoanInstitutionInfo;
+    private javax.swing.JLabel loanPageLowPayment;
+    private javax.swing.JSlider loanPagePaymentSlider;
     private javax.swing.JMenuItem loansPageButton;
     private javax.swing.JPanel loansPagePanel;
     private javax.swing.JPanel loansPageTablePanel;
@@ -747,8 +896,8 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JMenu pagesButton;
     private javax.swing.JMenuItem quitButton;
     private javax.swing.JMenuItem spendingsPageButton;
+    private javax.swing.JPanel spendingsPageGraphPanel;
     private javax.swing.JPanel spendingsPagePanel;
-    private javax.swing.JPanel spendingsPageTablePanel;
     private javax.swing.JLabel spendingsPageTitle;
     private javax.swing.JButton spendingsPageTitleButton;
     private javax.swing.JPanel spendingsPageTitlePanel;
@@ -758,22 +907,11 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JLabel transactionsPageTitle;
     private javax.swing.JButton transactionsPageTitleButton;
     private javax.swing.JPanel transactionsPageTitlePanel;
-    private javax.swing.JTable transactionsTable;
     private javax.swing.JMenuItem trendsPageButton;
+    private javax.swing.JPanel trendsPageGraphPanel;
     private javax.swing.JPanel trendsPagePanel;
-    private javax.swing.JPanel trendsPageTablePanel;
     private javax.swing.JLabel trendsPageTitle;
     private javax.swing.JButton trendsPageTitleButton;
     private javax.swing.JPanel trendsPageTitlePanel;
     // End of variables declaration//GEN-END:variables
-    private String accInst;
-    private String accType;
-    private String budType;
-    private String loanInst;
-    private int loanID;
-    private String spendType;
-    private String transType;
-    private String trendFrame;
-    private String trendType;
-    private boolean notHome = false;
 }

@@ -45,6 +45,9 @@ public class Account extends Information{
         return type;
     }
 
+    /**
+     * Function to print the accounts information
+     */
     @Override
     public void print() {
         System.out.println("\nAcounts:\n-------------------------");
