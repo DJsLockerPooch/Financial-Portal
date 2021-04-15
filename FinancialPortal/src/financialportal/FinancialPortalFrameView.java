@@ -55,74 +55,79 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         tabbedPane = new javax.swing.JTabbedPane();
         homePagePanel = new javax.swing.JPanel();
         homePageTitle = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        homePageTextPane = new javax.swing.JScrollPane();
         homePageTextArea = new javax.swing.JTextArea();
         accountsPagePanel = new javax.swing.JPanel();
         accountsPageTitlePanel = new javax.swing.JPanel();
         accountsPagePanelTitle = new javax.swing.JLabel();
         accountsPageTitleButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        accountsPageComboBox = new javax.swing.JComboBox<>();
+        accountsPageTablePanel = new javax.swing.JPanel();
+        accountsPageTableScrollPane = new javax.swing.JScrollPane();
+        accountsPageTable = new javax.swing.JTable();
+        accountsPageBriefingPane = new javax.swing.JScrollPane();
+        accountsPageBriefingTextArea = new javax.swing.JTextArea();
+        accountsPageHelpPane = new javax.swing.JScrollPane();
+        accountsPageHelpTetArea = new javax.swing.JTextArea();
         budgetsPagePanel = new javax.swing.JPanel();
         budgetsPageTitlePanel = new javax.swing.JPanel();
         budgetsPageTitle = new javax.swing.JLabel();
         budgetsPageTitleButton = new javax.swing.JButton();
         budgetsPageComboBox = new javax.swing.JComboBox<>();
         budgetsPageGraphPanel = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        budgetsPageTextScrollPane = new javax.swing.JScrollPane();
+        budgetsPageBriefingTextArea = new javax.swing.JTextArea();
+        budgetsPageHelpScrollArea = new javax.swing.JScrollPane();
+        budgetsPageHelpTextArea = new javax.swing.JTextArea();
         loansPagePanel = new javax.swing.JPanel();
         loansPageTitlePanel = new javax.swing.JPanel();
         loansPageTitle = new javax.swing.JLabel();
         loansPageTitleButton = new javax.swing.JButton();
+        loansPageComboBox = new javax.swing.JComboBox<>();
         loansPageTablePanel = new javax.swing.JPanel();
         loanPageLoanInstitutionInfo = new javax.swing.JLabel();
         loanPageLoanAmountInfo = new javax.swing.JLabel();
-        loanPageLoanInfo = new javax.swing.JLabel();
+        loanPageLoanDateInfo = new javax.swing.JLabel();
         loanPageLowPayment = new javax.swing.JLabel();
         loanPagePaymentSlider = new javax.swing.JSlider();
         loanPageHighPayment = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        loansPageHelpScrollPane = new javax.swing.JScrollPane();
+        loansPageHelpTextArea = new javax.swing.JTextArea();
         spendingsPagePanel = new javax.swing.JPanel();
         spendingsPageTitlePanel = new javax.swing.JPanel();
         spendingsPageTitle = new javax.swing.JLabel();
         spendingsPageTitleButton = new javax.swing.JButton();
+        spendingsPageComboBox = new javax.swing.JComboBox<>();
         spendingsPageGraphPanel = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTextArea8 = new javax.swing.JTextArea();
+        spendingsPageBriefingScrollArea = new javax.swing.JScrollPane();
+        spendingsPageBriefingArea = new javax.swing.JTextArea();
+        spendingsPageTextScrollArea = new javax.swing.JScrollPane();
+        spendingsPageHelpArea = new javax.swing.JTextArea();
         transactionsPagePanel = new javax.swing.JPanel();
         transactionsPageTitlePanel = new javax.swing.JPanel();
         transactionsPageTitle = new javax.swing.JLabel();
         transactionsPageTitleButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jTextArea9 = new javax.swing.JTextArea();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        jTextArea10 = new javax.swing.JTextArea();
+        transactionsPageComboBox = new javax.swing.JComboBox<>();
+        transactionsPageTablePanel = new javax.swing.JPanel();
+        transactionsPageTableScrollArea = new javax.swing.JScrollPane();
+        transactionsPageTable = new javax.swing.JTable();
+        transactionsPageScrollArea = new javax.swing.JScrollPane();
+        transactionsPageBriefingArea = new javax.swing.JTextArea();
+        transactionsPageHelpScrollArea = new javax.swing.JScrollPane();
+        transactionsPageHelpArea = new javax.swing.JTextArea();
         trendsPagePanel = new javax.swing.JPanel();
         trendsPageTitlePanel = new javax.swing.JPanel();
         trendsPageTitle = new javax.swing.JLabel();
         trendsPageTitleButton = new javax.swing.JButton();
+        trendsPageComboBox = new javax.swing.JComboBox<>();
         trendsPageGraphPanel = new javax.swing.JPanel();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        jTextArea11 = new javax.swing.JTextArea();
-        jScrollPane15 = new javax.swing.JScrollPane();
-        jTextArea12 = new javax.swing.JTextArea();
+        trendsPageBriefingScrollArea = new javax.swing.JScrollPane();
+        trendsPageBriefingArea = new javax.swing.JTextArea();
+        trendsPageHelpScrollArea = new javax.swing.JScrollPane();
+        trendsPageHelpArea = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileButton = new javax.swing.JMenu();
         quitButton = new javax.swing.JMenuItem();
@@ -161,9 +166,9 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         homePageTextArea.setWrapStyleWord(true);
         homePageTextArea.setDragEnabled(false);
         homePageTextArea.setPreferredSize(new java.awt.Dimension(600, 625));
-        jScrollPane3.setViewportView(homePageTextArea);
+        homePageTextPane.setViewportView(homePageTextArea);
 
-        homePagePanel.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+        homePagePanel.add(homePageTextPane, java.awt.BorderLayout.CENTER);
 
         tabbedPane.addTab("Home Page", homePagePanel);
 
@@ -172,7 +177,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         accountsPagePanelTitle.setText("Accounts Page");
         accountsPageTitlePanel.add(accountsPagePanelTitle);
 
-        accountsPageTitleButton.setText("Select Info");
+        accountsPageTitleButton.setText("Load Data");
         accountsPageTitleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accountsPageTitleButtonActionPerformed(evt);
@@ -180,13 +185,20 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         });
         accountsPageTitlePanel.add(accountsPageTitleButton);
 
+        accountsPageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountsPageComboBoxActionPerformed(evt);
+            }
+        });
+        accountsPageTitlePanel.add(accountsPageComboBox);
+
         accountsPagePanel.add(accountsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(400, 625));
+        accountsPageTablePanel.setPreferredSize(new java.awt.Dimension(400, 625));
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(350, 535));
+        accountsPageTableScrollPane.setPreferredSize(new java.awt.Dimension(550, 535));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        accountsPageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -200,51 +212,58 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable1.setPreferredSize(new java.awt.Dimension(400, 625));
-        jTable1.setSize(new java.awt.Dimension(400, 625));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        accountsPageTable.setPreferredSize(new java.awt.Dimension(400, 625));
+        accountsPageTable.setSize(new java.awt.Dimension(400, 625));
+        accountsPageTable.getTableHeader().setReorderingAllowed(false);
+        accountsPageTableScrollPane.setViewportView(accountsPageTable);
+        if (accountsPageTable.getColumnModel().getColumnCount() > 0) {
+            accountsPageTable.getColumnModel().getColumn(0).setResizable(false);
+            accountsPageTable.getColumnModel().getColumn(1).setResizable(false);
+            accountsPageTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane2);
+        accountsPageTablePanel.add(accountsPageTableScrollPane);
 
-        accountsPagePanel.add(jPanel1, java.awt.BorderLayout.CENTER);
+        accountsPagePanel.add(accountsPageTablePanel, java.awt.BorderLayout.CENTER);
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(400, 625));
+        accountsPageBriefingPane.setPreferredSize(new java.awt.Dimension(300, 625));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("This is your accounts page! Go ahead and select the \"Select Info\" button and type in the data you wish to see! Displayed will be a list of all the accouts at the institution in which you requested.");
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setDragEnabled(false);
-        jTextArea1.setPreferredSize(new java.awt.Dimension(300, 500));
-        jTextArea1.setSize(new java.awt.Dimension(300, 500));
-        jScrollPane1.setViewportView(jTextArea1);
+        accountsPageBriefingTextArea.setColumns(20);
+        accountsPageBriefingTextArea.setLineWrap(true);
+        accountsPageBriefingTextArea.setRows(5);
+        accountsPageBriefingTextArea.setText("   Hello and welcome to your accounts page! On this page you will see a list of all your account types and the institutions they belong to.\n\n   To load the data, please select the \"Load Data\" button. Then the drop down menu should fill up with all of the institutions you can choose from. Just select the institution you wish to see, and the table of that institution should be displayed.");
+        accountsPageBriefingTextArea.setWrapStyleWord(true);
+        accountsPageBriefingTextArea.setDragEnabled(false);
+        accountsPageBriefingTextArea.setPreferredSize(new java.awt.Dimension(300, 500));
+        accountsPageBriefingTextArea.setSize(new java.awt.Dimension(300, 500));
+        accountsPageBriefingPane.setViewportView(accountsPageBriefingTextArea);
 
-        accountsPagePanel.add(jScrollPane1, java.awt.BorderLayout.LINE_START);
+        accountsPagePanel.add(accountsPageBriefingPane, java.awt.BorderLayout.LINE_START);
 
-        jScrollPane6.setPreferredSize(new java.awt.Dimension(400, 625));
+        accountsPageHelpPane.setPreferredSize(new java.awt.Dimension(300, 625));
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jTextArea3.setText("This is your accounts page! Go ahead and select the \"Select Info\" button and type in the data you wish to see! Displayed will be a list of all the accouts at the institution in which you requested.");
-        jTextArea3.setWrapStyleWord(true);
-        jTextArea3.setPreferredSize(new java.awt.Dimension(300, 500));
-        jTextArea3.setSize(new java.awt.Dimension(300, 500));
-        jScrollPane6.setViewportView(jTextArea3);
+        accountsPageHelpTetArea.setColumns(20);
+        accountsPageHelpTetArea.setLineWrap(true);
+        accountsPageHelpTetArea.setRows(5);
+        accountsPageHelpTetArea.setText("   The type of the account will be listed under the \"Type\" column, while the name of the institution in which that accounts is will be listed under the \"Institution\" column, and finally the amount in that account will be displayed in the \"Amount\" column of the table.");
+        accountsPageHelpTetArea.setWrapStyleWord(true);
+        accountsPageHelpTetArea.setPreferredSize(new java.awt.Dimension(300, 500));
+        accountsPageHelpTetArea.setSize(new java.awt.Dimension(300, 500));
+        accountsPageHelpPane.setViewportView(accountsPageHelpTetArea);
 
-        accountsPagePanel.add(jScrollPane6, java.awt.BorderLayout.LINE_END);
+        accountsPagePanel.add(accountsPageHelpPane, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Accounts", accountsPagePanel);
 
@@ -274,35 +293,35 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         budgetsPageGraphPanel.setSize(new java.awt.Dimension(280, 500));
         budgetsPagePanel.add(budgetsPageGraphPanel, java.awt.BorderLayout.CENTER);
 
-        jScrollPane7.setPreferredSize(new java.awt.Dimension(275, 500));
-        jScrollPane7.setSize(new java.awt.Dimension(300, 500));
+        budgetsPageTextScrollPane.setPreferredSize(new java.awt.Dimension(275, 500));
+        budgetsPageTextScrollPane.setSize(new java.awt.Dimension(275, 500));
 
-        jTextArea4.setEditable(false);
-        jTextArea4.setColumns(20);
-        jTextArea4.setLineWrap(true);
-        jTextArea4.setRows(5);
-        jTextArea4.setText("   Hello and welcome to your budgeting page! On this page you will see a type of budget, the total amout for the month and the amount left to be paid.\n\n   To load the data, please selec the \"Load Data\" button. Then a graph should appear with the first budget. The drop down menu should fill up with all of the budgets you can choose from. Just select the budget you wish to see, and the graph of that budget should appear in the middle section.");
-        jTextArea4.setWrapStyleWord(true);
-        jTextArea4.setPreferredSize(new java.awt.Dimension(300, 500));
-        jTextArea4.setSize(new java.awt.Dimension(300, 500));
-        jScrollPane7.setViewportView(jTextArea4);
+        budgetsPageBriefingTextArea.setEditable(false);
+        budgetsPageBriefingTextArea.setColumns(20);
+        budgetsPageBriefingTextArea.setLineWrap(true);
+        budgetsPageBriefingTextArea.setRows(5);
+        budgetsPageBriefingTextArea.setText("   Hello and welcome to your budgeting page! On this page you will see a type of budget, the total amout for the month and the amount left to be paid.\n\n   To load the data, please select the \"Load Data\" button. Then a graph should appear with the first budget. The drop down menu should fill up with all of the budgets you can choose from. Just select the budget you wish to see, and the graph of that budget should appear in the middle section.");
+        budgetsPageBriefingTextArea.setWrapStyleWord(true);
+        budgetsPageBriefingTextArea.setPreferredSize(new java.awt.Dimension(275, 500));
+        budgetsPageBriefingTextArea.setSize(new java.awt.Dimension(275, 500));
+        budgetsPageTextScrollPane.setViewportView(budgetsPageBriefingTextArea);
 
-        budgetsPagePanel.add(jScrollPane7, java.awt.BorderLayout.LINE_START);
+        budgetsPagePanel.add(budgetsPageTextScrollPane, java.awt.BorderLayout.LINE_START);
 
-        jScrollPane8.setPreferredSize(new java.awt.Dimension(275, 500));
-        jScrollPane8.setSize(new java.awt.Dimension(300, 500));
+        budgetsPageHelpScrollArea.setPreferredSize(new java.awt.Dimension(275, 500));
+        budgetsPageHelpScrollArea.setSize(new java.awt.Dimension(275, 500));
 
-        jTextArea5.setEditable(false);
-        jTextArea5.setColumns(20);
-        jTextArea5.setLineWrap(true);
-        jTextArea5.setRows(5);
-        jTextArea5.setText("   The red color represents how much of the monthly budget you have paid so far. The blue color represents how much of the budget you have left to pay off.\n\n   If only one color is shown, then either all or none of the budget needs to be paid for.");
-        jTextArea5.setWrapStyleWord(true);
-        jTextArea5.setPreferredSize(new java.awt.Dimension(275, 500));
-        jTextArea5.setSize(new java.awt.Dimension(300, 500));
-        jScrollPane8.setViewportView(jTextArea5);
+        budgetsPageHelpTextArea.setEditable(false);
+        budgetsPageHelpTextArea.setColumns(20);
+        budgetsPageHelpTextArea.setLineWrap(true);
+        budgetsPageHelpTextArea.setRows(5);
+        budgetsPageHelpTextArea.setText("   The red color represents how much of the monthly budget you have paid so far. The blue color represents how much of the budget you have left to pay off.\n\n   If only one color is shown, then either all or none of the budget needs to be paid for.");
+        budgetsPageHelpTextArea.setWrapStyleWord(true);
+        budgetsPageHelpTextArea.setPreferredSize(new java.awt.Dimension(275, 500));
+        budgetsPageHelpTextArea.setSize(new java.awt.Dimension(275, 500));
+        budgetsPageHelpScrollArea.setViewportView(budgetsPageHelpTextArea);
 
-        budgetsPagePanel.add(jScrollPane8, java.awt.BorderLayout.LINE_END);
+        budgetsPagePanel.add(budgetsPageHelpScrollArea, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Budgets", budgetsPagePanel);
 
@@ -311,7 +330,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         loansPageTitle.setText("Loans Page");
         loansPageTitlePanel.add(loansPageTitle);
 
-        loansPageTitleButton.setText("Select Info");
+        loansPageTitleButton.setText("Load Data");
         loansPageTitleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loansPageTitleButtonActionPerformed(evt);
@@ -319,18 +338,28 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         });
         loansPageTitlePanel.add(loansPageTitleButton);
 
+        loansPageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loansPageComboBoxActionPerformed(evt);
+            }
+        });
+        loansPageTitlePanel.add(loansPageComboBox);
+
         loansPagePanel.add(loansPageTitlePanel, java.awt.BorderLayout.PAGE_START);
 
         loansPageTablePanel.setLayout(new java.awt.GridLayout(3, 3));
 
-        loanPageLoanInstitutionInfo.setText("jLabel1");
+        loanPageLoanInstitutionInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loanPageLoanInstitutionInfo.setText("Institution: N/A");
         loansPageTablePanel.add(loanPageLoanInstitutionInfo);
 
-        loanPageLoanAmountInfo.setText("jLabel2");
+        loanPageLoanAmountInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loanPageLoanAmountInfo.setText("Amount: N/A");
         loansPageTablePanel.add(loanPageLoanAmountInfo);
 
-        loanPageLoanInfo.setText("jLabel6");
-        loansPageTablePanel.add(loanPageLoanInfo);
+        loanPageLoanDateInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loanPageLoanDateInfo.setText("Percent: N/A");
+        loansPageTablePanel.add(loanPageLoanDateInfo);
 
         loanPageLowPayment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loanPageLowPayment.setText("0");
@@ -348,25 +377,29 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         loanPageHighPayment.setText("-");
         loansPageTablePanel.add(loanPageHighPayment);
 
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("jLabel8");
         loansPageTablePanel.add(jLabel8);
 
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("jLabel7");
         loansPageTablePanel.add(jLabel7);
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("jLabel4");
         loansPageTablePanel.add(jLabel4);
 
         loansPagePanel.add(loansPageTablePanel, java.awt.BorderLayout.CENTER);
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setWrapStyleWord(true);
-        jScrollPane5.setViewportView(jTextArea2);
+        loansPageHelpTextArea.setEditable(false);
+        loansPageHelpTextArea.setColumns(20);
+        loansPageHelpTextArea.setLineWrap(true);
+        loansPageHelpTextArea.setRows(5);
+        loansPageHelpTextArea.setText("   Hello and welcome to your loans page. This page will display the loan that you requested when you select it from the drop down menu.\n\n   The institution, amount, and due date will be displayed. The slider represents how much of the payment for the month you would like to pay. Below the slider will be the adjusted loan payoff date assuming payments would remain the same.");
+        loansPageHelpTextArea.setWrapStyleWord(true);
+        loansPageHelpScrollPane.setViewportView(loansPageHelpTextArea);
 
-        loansPagePanel.add(jScrollPane5, java.awt.BorderLayout.LINE_START);
+        loansPagePanel.add(loansPageHelpScrollPane, java.awt.BorderLayout.LINE_START);
 
         tabbedPane.addTab("Loans", loansPagePanel);
 
@@ -375,7 +408,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         spendingsPageTitle.setText("Spendings Page");
         spendingsPageTitlePanel.add(spendingsPageTitle);
 
-        spendingsPageTitleButton.setText("Select Info");
+        spendingsPageTitleButton.setText("Load Data");
         spendingsPageTitleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spendingsPageTitleButtonActionPerformed(evt);
@@ -383,20 +416,33 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         });
         spendingsPageTitlePanel.add(spendingsPageTitleButton);
 
+        spendingsPageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spendingsPageComboBoxActionPerformed(evt);
+            }
+        });
+        spendingsPageTitlePanel.add(spendingsPageComboBox);
+
         spendingsPagePanel.add(spendingsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
         spendingsPagePanel.add(spendingsPageGraphPanel, java.awt.BorderLayout.CENTER);
 
-        jTextArea7.setColumns(20);
-        jTextArea7.setRows(5);
-        jScrollPane10.setViewportView(jTextArea7);
+        spendingsPageBriefingArea.setColumns(20);
+        spendingsPageBriefingArea.setLineWrap(true);
+        spendingsPageBriefingArea.setRows(5);
+        spendingsPageBriefingArea.setText("   Hello and welcome to your spendings page! On this page you will see all the spendings, the time of the spending, and the amount that spending procurred.\n\n   To load the data, please select the \"Load Data\" button. Then a graph should appear with the years spendings. The drop down menu should fill up with all of the spendings you can choose from. Just select the spending you wish to see, and the graph of that spending should appear in the middle section.");
+        spendingsPageBriefingArea.setWrapStyleWord(true);
+        spendingsPageBriefingScrollArea.setViewportView(spendingsPageBriefingArea);
 
-        spendingsPagePanel.add(jScrollPane10, java.awt.BorderLayout.LINE_START);
+        spendingsPagePanel.add(spendingsPageBriefingScrollArea, java.awt.BorderLayout.LINE_START);
 
-        jTextArea8.setColumns(20);
-        jTextArea8.setRows(5);
-        jScrollPane11.setViewportView(jTextArea8);
+        spendingsPageHelpArea.setColumns(20);
+        spendingsPageHelpArea.setLineWrap(true);
+        spendingsPageHelpArea.setRows(5);
+        spendingsPageHelpArea.setText("   When a graph appears, each bar represents a different spending for that month. There may be one in a month, or there may be more, and then a legend will appear along the bottom of the graph representing the color of the bars.");
+        spendingsPageHelpArea.setWrapStyleWord(true);
+        spendingsPageTextScrollArea.setViewportView(spendingsPageHelpArea);
 
-        spendingsPagePanel.add(jScrollPane11, java.awt.BorderLayout.LINE_END);
+        spendingsPagePanel.add(spendingsPageTextScrollArea, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Spendings", spendingsPagePanel);
 
@@ -405,7 +451,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         transactionsPageTitle.setText("Transactions Page");
         transactionsPageTitlePanel.add(transactionsPageTitle);
 
-        transactionsPageTitleButton.setText("Select Info");
+        transactionsPageTitleButton.setText("Load Data");
         transactionsPageTitleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transactionsPageTitleButtonActionPerformed(evt);
@@ -413,9 +459,18 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         });
         transactionsPageTitlePanel.add(transactionsPageTitleButton);
 
+        transactionsPageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transactionsPageComboBoxActionPerformed(evt);
+            }
+        });
+        transactionsPageTitlePanel.add(transactionsPageComboBox);
+
         transactionsPagePanel.add(transactionsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        transactionsPageTableScrollArea.setPreferredSize(new java.awt.Dimension(550, 535));
+
+        transactionsPageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -429,34 +484,52 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
+        transactionsPageTable.setPreferredSize(new java.awt.Dimension(225, 535));
+        transactionsPageTable.getTableHeader().setReorderingAllowed(false);
+        transactionsPageTableScrollArea.setViewportView(transactionsPageTable);
+        if (transactionsPageTable.getColumnModel().getColumnCount() > 0) {
+            transactionsPageTable.getColumnModel().getColumn(0).setResizable(false);
+            transactionsPageTable.getColumnModel().getColumn(1).setResizable(false);
+            transactionsPageTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel2.add(jScrollPane4);
+        transactionsPageTablePanel.add(transactionsPageTableScrollArea);
 
-        transactionsPagePanel.add(jPanel2, java.awt.BorderLayout.CENTER);
+        transactionsPagePanel.add(transactionsPageTablePanel, java.awt.BorderLayout.CENTER);
 
-        jTextArea9.setColumns(20);
-        jTextArea9.setRows(5);
-        jScrollPane12.setViewportView(jTextArea9);
+        transactionsPageScrollArea.setPreferredSize(new java.awt.Dimension(300, 84));
 
-        transactionsPagePanel.add(jScrollPane12, java.awt.BorderLayout.LINE_START);
+        transactionsPageBriefingArea.setColumns(20);
+        transactionsPageBriefingArea.setLineWrap(true);
+        transactionsPageBriefingArea.setRows(5);
+        transactionsPageBriefingArea.setText("   Hello and welcome to your transactions page! On this page you will see the amount, date, and institution of the transactions.\n\n   To load the data, please select the \"Load Data\" button. Then the month's transactions will appear. The drop down menu will also fill up with other months/years worth of data to be selected. Just select the month/year you would like and the table should reappear with that month/year's data.");
+        transactionsPageBriefingArea.setWrapStyleWord(true);
+        transactionsPageScrollArea.setViewportView(transactionsPageBriefingArea);
 
-        jTextArea10.setColumns(20);
-        jTextArea10.setRows(5);
-        jScrollPane13.setViewportView(jTextArea10);
+        transactionsPagePanel.add(transactionsPageScrollArea, java.awt.BorderLayout.LINE_START);
 
-        transactionsPagePanel.add(jScrollPane13, java.awt.BorderLayout.LINE_END);
+        transactionsPageHelpScrollArea.setPreferredSize(new java.awt.Dimension(300, 84));
+
+        transactionsPageHelpArea.setColumns(20);
+        transactionsPageHelpArea.setLineWrap(true);
+        transactionsPageHelpArea.setRows(5);
+        transactionsPageHelpArea.setText("   The amount of the transaction will be listed under the \"Amount\" column, while the date of the transaction will be listed under the \"Date\" column, and finally the institution that the transaction went to will be displayed in the \"Institution\" column of the table.");
+        transactionsPageHelpArea.setWrapStyleWord(true);
+        transactionsPageHelpScrollArea.setViewportView(transactionsPageHelpArea);
+
+        transactionsPagePanel.add(transactionsPageHelpScrollArea, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Transactions", transactionsPagePanel);
 
@@ -465,7 +538,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         trendsPageTitle.setText("Trends Page");
         trendsPageTitlePanel.add(trendsPageTitle);
 
-        trendsPageTitleButton.setText("Select Info");
+        trendsPageTitleButton.setText("Load Data");
         trendsPageTitleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trendsPageTitleButtonActionPerformed(evt);
@@ -473,20 +546,33 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         });
         trendsPageTitlePanel.add(trendsPageTitleButton);
 
+        trendsPageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trendsPageComboBoxActionPerformed(evt);
+            }
+        });
+        trendsPageTitlePanel.add(trendsPageComboBox);
+
         trendsPagePanel.add(trendsPageTitlePanel, java.awt.BorderLayout.PAGE_START);
         trendsPagePanel.add(trendsPageGraphPanel, java.awt.BorderLayout.CENTER);
 
-        jTextArea11.setColumns(20);
-        jTextArea11.setRows(5);
-        jScrollPane14.setViewportView(jTextArea11);
+        trendsPageBriefingArea.setColumns(20);
+        trendsPageBriefingArea.setLineWrap(true);
+        trendsPageBriefingArea.setRows(5);
+        trendsPageBriefingArea.setText("   Hello and welcome to your trends page! On this page you will see a line graph of groups of transactions over a span of time.\n\n   To load the data, please select the \"Load Data\" button. Then a graph should appear with the years trend graph. The drop down menu should fill up with all of the years which you can choose from. Just select the year you wish to see, and the line graph of that yaer should appear in the middle section.");
+        trendsPageBriefingArea.setWrapStyleWord(true);
+        trendsPageBriefingScrollArea.setViewportView(trendsPageBriefingArea);
 
-        trendsPagePanel.add(jScrollPane14, java.awt.BorderLayout.LINE_START);
+        trendsPagePanel.add(trendsPageBriefingScrollArea, java.awt.BorderLayout.LINE_START);
 
-        jTextArea12.setColumns(20);
-        jTextArea12.setRows(5);
-        jScrollPane15.setViewportView(jTextArea12);
+        trendsPageHelpArea.setColumns(20);
+        trendsPageHelpArea.setLineWrap(true);
+        trendsPageHelpArea.setRows(5);
+        trendsPageHelpArea.setText("   When a graph appears, each line represents a different trend for that month/year. There may be one line, or there may be more, and then a legend will appear along the bottom of the graph representing the color of the lines.");
+        trendsPageHelpArea.setWrapStyleWord(true);
+        trendsPageHelpScrollArea.setViewportView(trendsPageHelpArea);
 
-        trendsPagePanel.add(jScrollPane15, java.awt.BorderLayout.LINE_END);
+        trendsPagePanel.add(trendsPageHelpScrollArea, java.awt.BorderLayout.LINE_END);
 
         tabbedPane.addTab("Trends", trendsPagePanel);
 
@@ -648,19 +734,38 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         String[] split = text.split(", ");
         ArrayList<Spending> spendings = getSpendings();
         ArrayList<Spending> newSpendings = new ArrayList<>();
-        for (Spending s : spendings) {
-            if (s.getType().equals(split[0]) && s.getSDF().equals(split[1])) {
-                newSpendings.add(s);
-            }
-        }
+        spendings.stream().filter((s) -> (s.getType().equals(split[0]) && s.getSDF().equals(split[1]))).forEachOrdered((s) -> {
+            newSpendings.add(s);
+        });
         addBarGraph(newSpendings);
     }//GEN-LAST:event_budgetsPageComboBoxActionPerformed
 
     private void loanPagePaymentSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_loanPagePaymentSliderStateChanged
-        double loanAmt = Double.parseDouble(loanPageLoanAmountInfo.getText());
+        String[] split = loanPageLoanAmountInfo.getText().split(" ");
+        double loanAmt = Double.parseDouble(split[1].substring(1));
         int paymentAmt = loanPagePaymentSlider.getValue();
         loanPageHighPayment.setText(String.valueOf(loanAmt * paymentAmt / 100));
     }//GEN-LAST:event_loanPagePaymentSliderStateChanged
+
+    private void loansPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansPageComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loansPageComboBoxActionPerformed
+
+    private void spendingsPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spendingsPageComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spendingsPageComboBoxActionPerformed
+
+    private void transactionsPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsPageComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transactionsPageComboBoxActionPerformed
+
+    private void trendsPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trendsPageComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trendsPageComboBoxActionPerformed
+
+    private void accountsPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountsPageComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountsPageComboBoxActionPerformed
 
     public ArrayList<Spending> getSpendings() {
         ArrayList<Spending> spendings = new ArrayList<>();
@@ -764,9 +869,9 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     }
     
     public void inputLoanIntoLoanPage(ArrayList<Loan> loans){
-        loanPageLoanAmountInfo.setText(String.valueOf(loans.get(0).getAmount()));
-        loanPageLoanInstitutionInfo.setText(String.valueOf(loans.get(0).getInstitution()));
-        loanPageLoanInfo.setText(String.valueOf(loans.get(0).getSDF()));
+        loanPageLoanAmountInfo.setText("Amount: $" + String.valueOf(loans.get(0).getAmount()));
+        loanPageLoanInstitutionInfo.setText("Institution: " + String.valueOf(loans.get(0).getInstitution()));
+        loanPageLoanDateInfo.setText("Date: " + String.valueOf(loans.get(0).getSDF()));
     }
 
     public ArrayList<JButton> getButtons() {
@@ -831,15 +936,27 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane accountsPageBriefingPane;
+    private javax.swing.JTextArea accountsPageBriefingTextArea;
     private javax.swing.JMenuItem accountsPageButton;
+    private javax.swing.JComboBox<String> accountsPageComboBox;
+    private javax.swing.JScrollPane accountsPageHelpPane;
+    private javax.swing.JTextArea accountsPageHelpTetArea;
     private javax.swing.JPanel accountsPagePanel;
     private javax.swing.JLabel accountsPagePanelTitle;
+    private javax.swing.JTable accountsPageTable;
+    private javax.swing.JPanel accountsPageTablePanel;
+    private javax.swing.JScrollPane accountsPageTableScrollPane;
     private javax.swing.JButton accountsPageTitleButton;
     private javax.swing.JPanel accountsPageTitlePanel;
+    private javax.swing.JTextArea budgetsPageBriefingTextArea;
     private javax.swing.JMenuItem budgetsPageButton;
     private javax.swing.JComboBox<String> budgetsPageComboBox;
     private javax.swing.JPanel budgetsPageGraphPanel;
+    private javax.swing.JScrollPane budgetsPageHelpScrollArea;
+    private javax.swing.JTextArea budgetsPageHelpTextArea;
     private javax.swing.JPanel budgetsPagePanel;
+    private javax.swing.JScrollPane budgetsPageTextScrollPane;
     private javax.swing.JLabel budgetsPageTitle;
     private javax.swing.JButton budgetsPageTitleButton;
     private javax.swing.JPanel budgetsPageTitlePanel;
@@ -847,46 +964,21 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JMenuItem homePageButton;
     private javax.swing.JPanel homePagePanel;
     private javax.swing.JTextArea homePageTextArea;
+    private javax.swing.JScrollPane homePageTextPane;
     private javax.swing.JLabel homePageTitle;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
-    private javax.swing.JScrollPane jScrollPane14;
-    private javax.swing.JScrollPane jScrollPane15;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea10;
-    private javax.swing.JTextArea jTextArea11;
-    private javax.swing.JTextArea jTextArea12;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea7;
-    private javax.swing.JTextArea jTextArea8;
-    private javax.swing.JTextArea jTextArea9;
     private javax.swing.JLabel loanPageHighPayment;
     private javax.swing.JLabel loanPageLoanAmountInfo;
-    private javax.swing.JLabel loanPageLoanInfo;
+    private javax.swing.JLabel loanPageLoanDateInfo;
     private javax.swing.JLabel loanPageLoanInstitutionInfo;
     private javax.swing.JLabel loanPageLowPayment;
     private javax.swing.JSlider loanPagePaymentSlider;
     private javax.swing.JMenuItem loansPageButton;
+    private javax.swing.JComboBox<String> loansPageComboBox;
+    private javax.swing.JScrollPane loansPageHelpScrollPane;
+    private javax.swing.JTextArea loansPageHelpTextArea;
     private javax.swing.JPanel loansPagePanel;
     private javax.swing.JPanel loansPageTablePanel;
     private javax.swing.JLabel loansPageTitle;
@@ -895,20 +987,38 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu pagesButton;
     private javax.swing.JMenuItem quitButton;
+    private javax.swing.JTextArea spendingsPageBriefingArea;
+    private javax.swing.JScrollPane spendingsPageBriefingScrollArea;
     private javax.swing.JMenuItem spendingsPageButton;
+    private javax.swing.JComboBox<String> spendingsPageComboBox;
     private javax.swing.JPanel spendingsPageGraphPanel;
+    private javax.swing.JTextArea spendingsPageHelpArea;
     private javax.swing.JPanel spendingsPagePanel;
+    private javax.swing.JScrollPane spendingsPageTextScrollArea;
     private javax.swing.JLabel spendingsPageTitle;
     private javax.swing.JButton spendingsPageTitleButton;
     private javax.swing.JPanel spendingsPageTitlePanel;
     private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTextArea transactionsPageBriefingArea;
     private javax.swing.JMenuItem transactionsPageButton;
+    private javax.swing.JComboBox<String> transactionsPageComboBox;
+    private javax.swing.JTextArea transactionsPageHelpArea;
+    private javax.swing.JScrollPane transactionsPageHelpScrollArea;
     private javax.swing.JPanel transactionsPagePanel;
+    private javax.swing.JScrollPane transactionsPageScrollArea;
+    private javax.swing.JTable transactionsPageTable;
+    private javax.swing.JPanel transactionsPageTablePanel;
+    private javax.swing.JScrollPane transactionsPageTableScrollArea;
     private javax.swing.JLabel transactionsPageTitle;
     private javax.swing.JButton transactionsPageTitleButton;
     private javax.swing.JPanel transactionsPageTitlePanel;
+    private javax.swing.JTextArea trendsPageBriefingArea;
+    private javax.swing.JScrollPane trendsPageBriefingScrollArea;
     private javax.swing.JMenuItem trendsPageButton;
+    private javax.swing.JComboBox<String> trendsPageComboBox;
     private javax.swing.JPanel trendsPageGraphPanel;
+    private javax.swing.JTextArea trendsPageHelpArea;
+    private javax.swing.JScrollPane trendsPageHelpScrollArea;
     private javax.swing.JPanel trendsPagePanel;
     private javax.swing.JLabel trendsPageTitle;
     private javax.swing.JButton trendsPageTitleButton;

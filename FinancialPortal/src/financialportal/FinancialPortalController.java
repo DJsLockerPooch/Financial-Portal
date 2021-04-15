@@ -55,9 +55,10 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveAccounts(FinancialPortalModel model, FinancialPortalView view) {
-        String inst = view.getInfo("institution", "account");
-        String type = view.getInfo("type", "account");
-        view.inputDataIntoAccountsTable(model.queryAccounts(inst, type));
+        view.clearAccountsTable();
+        ArrayList<Account> accounts = model.queryAccounts("", "");
+        view.inputDataIntoAccountsTable(accounts);
+        view.insertIntoAccountsComboBox(accounts);
     }
 
     /**
@@ -71,9 +72,9 @@ public class FinancialPortalController {
      */
     public static void saveBudgets(FinancialPortalModel model, FinancialPortalView view) {
         view.removeGraph(view.getPanel("budget"));
-        String type = view.getInfo("type", "budget");
-        String frame = view.getInfo("frame of reference", "budget");
-        view.addRingGraph(model.queryBudgets(frame, type));
+        ArrayList<Budget> budgets = model.queryBudgets("", "");
+        view.addRingGraph(budgets);
+        view.insertIntoBudgetsComboBox(budgets);
     }
 
     /**
@@ -86,8 +87,10 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveLoans(FinancialPortalModel model, FinancialPortalView view) {
-        String inst = view.getInfo("institution", "loans");
-        int loanID = (Integer.parseInt(view.getInfo("loan ID", "loans")));
+//        view.resetLoansPage();
+        ArrayList<Loan> loans = model.queryLoans("", -1);
+//        view.insertLoan(loans);
+        view.insertIntoLoansComboBox(loans);
     }
 
     /**
@@ -100,8 +103,10 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveSpendings(FinancialPortalModel model, FinancialPortalView view) {
-        String frame = view.getInfo("frame of reference", "spending");
-        view.addBarGraph(model.querySpendings(frame));
+        view.removeGraph(view.getPanel("spending"));
+        ArrayList<Spending> spendings = model.querySpendings("");
+        view.addBarGraph(spendings);
+        view.insertIntoSpendingsComboBox(spendings);
     }
 
     /**
@@ -114,8 +119,10 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveTransactions(FinancialPortalModel model, FinancialPortalView view) {
-        String frame = view.getInfo("frame of reference", "transaction");
-        view.inputDataIntoTransactionsTable(model.queryTransactions(frame));
+        view.clearTransactionsTable();
+        ArrayList<Transaction> transactions = model.queryTransactions("");
+        view.insertIntoTransactionsComboBox(transactions);
+        view.inputDataIntoTransactionsTable(transactions);
     }
 
     /**
@@ -128,7 +135,9 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveTrends(FinancialPortalModel model, FinancialPortalView view) {
-        String frame = view.getInfo("year", "trend");
-        view.addLineGraph(model.queryTrends(frame));
+        view.removeGraph(view.getPanel("trend"));
+        ArrayList<Trend> trends = model.queryTrends("");
+        view.addLineGraph(trends);
+        view.insertIntoTrendsComboBox(trends);
     }
 }
