@@ -1,9 +1,12 @@
 package financialportal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -20,6 +23,7 @@ import org.jfree.data.general.DefaultPieDataset;
 public class FinancialPortalView extends javax.swing.JFrame {
 
     private static ArrayList<JButton> buttons;
+    private static ArrayList<JComboBox> boxes;
 
     /**
      * Creates new form PortalFrame
@@ -36,6 +40,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
         // Initializing accounts page objects
+        accounts = new ArrayList<>();
         accountsPageBriefingPane = new javax.swing.JScrollPane();
         accountsPageBriefingTextArea = new javax.swing.JTextArea();
         accountsPageComboBox = new javax.swing.JComboBox<>();
@@ -51,6 +56,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
         accountsPageTableScrollPane = new javax.swing.JScrollPane();
 
         // Initializing budgets page objects
+        budgets = new ArrayList<>();
         budgetsPageBriefingScrollPane = new javax.swing.JScrollPane();
         budgetsPageBriefingTextArea = new javax.swing.JTextArea();
         budgetsPageComboBox = new javax.swing.JComboBox<>();
@@ -74,14 +80,17 @@ public class FinancialPortalView extends javax.swing.JFrame {
         homePageTitle = new javax.swing.JLabel();
 
         // Initializing loans page objects
+        loans = new ArrayList<>();
         loansPageButton = new javax.swing.JMenuItem();
         loansPageComboBox = new javax.swing.JComboBox<>();
-        loansPageGraphPanel = new javax.swing.JPanel();
         loanPageLoanAmountInfo = new javax.swing.JLabel();
         loanPageLoanDateInfo = new javax.swing.JLabel();
         loanPageLoanInstitutionInfo = new javax.swing.JLabel();
         loanPageLowPayment = new javax.swing.JLabel();
         loanPageHighPayment = new javax.swing.JLabel();
+        loanPageLoanExtraInfo1 = new javax.swing.JLabel();
+        loanPageLoanExtraInfo2 = new javax.swing.JLabel();
+        loanPageLoanExtraInfo3 = new javax.swing.JLabel();
         loansPagePanel = new javax.swing.JPanel();
         loansPageTitle = new javax.swing.JLabel();
         loansPageTitleButton = new javax.swing.JButton();
@@ -97,6 +106,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
         quitButton = new javax.swing.JMenuItem();
 
         // Initializing spendings page objects
+        spendings = new ArrayList<>();
         spendingsPageButton = new javax.swing.JMenuItem();
         spendingsPageComboBox = new javax.swing.JComboBox<>();
         spendingsPageGraphPanel = new javax.swing.JPanel();
@@ -113,6 +123,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
         tabbedPane = new javax.swing.JTabbedPane();
 
         // Initializing transactions page objects
+        transactions = new ArrayList<>();
         transactionsPageBriefingArea = new javax.swing.JTextArea();
         transactionsPageButton = new javax.swing.JMenuItem();
         transactionsPageComboBox = new javax.swing.JComboBox<>();
@@ -128,6 +139,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
         transactionsPageTable = new javax.swing.JTable();
 
         // Initializing trends page objects
+        trends = new ArrayList<>();
         trendsPageBriefingArea = new javax.swing.JTextArea();
         trendsPageBriefingScrollArea = new javax.swing.JScrollPane();
         trendsPageButton = new javax.swing.JMenuItem();
@@ -303,6 +315,9 @@ public class FinancialPortalView extends javax.swing.JFrame {
         loanPageHighPayment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loanPageHighPayment.setText("-");
         loansPageTablePanel.add(loanPageHighPayment);
+        loansPageTablePanel.add(loanPageLoanExtraInfo1);
+        loansPageTablePanel.add(loanPageLoanExtraInfo2);
+        loansPageTablePanel.add(loanPageLoanExtraInfo3);
         loansPagePanel.add(loansPageTablePanel, java.awt.BorderLayout.CENTER);
 
         loansPageHelpTextArea.setEditable(false);
@@ -521,6 +536,14 @@ public class FinancialPortalView extends javax.swing.JFrame {
         buttons.add(spendingsPageTitleButton);
         buttons.add(transactionsPageTitleButton);
         buttons.add(trendsPageTitleButton);
+
+        boxes = new ArrayList<>();
+        boxes.add(accountsPageComboBox);
+        boxes.add(budgetsPageComboBox);
+        boxes.add(loansPageComboBox);
+        boxes.add(spendingsPageComboBox);
+        boxes.add(transactionsPageComboBox);
+        boxes.add(trendsPageComboBox);
     }
 
     /**
@@ -539,6 +562,8 @@ public class FinancialPortalView extends javax.swing.JFrame {
      * @param spendings the array list of budgets the graph will be built around
      */
     public void addBarGraph(ArrayList<Spending> spendings) {
+        removeGraph(spendingsPageGraphPanel);
+        Collections.sort(spendings, Spending.SpendingFrameComparator);
         DefaultCategoryDataset data = new DefaultCategoryDataset();
         spendings.forEach((s) -> {
             data.addValue(s.getAmount(), s.getType(), s.getSDF());
@@ -546,6 +571,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
         JFreeChart chart = ChartFactory.createBarChart("Spendings Graph for " + spendings.get(0).getSDF(), "Type", "Amount", data);
         ChartPanel panel = new ChartPanel(chart);
         spendingsPageGraphPanel.add(panel);
+        spendingsPageGraphPanel.updateUI();
     }
 
     /**
@@ -555,6 +581,8 @@ public class FinancialPortalView extends javax.swing.JFrame {
      * @param trends the array list of trends the graph will be built around
      */
     public void addLineGraph(ArrayList<Trend> trends) {
+        removeGraph(trendsPageGraphPanel);
+        Collections.sort(trends, Trend.TrendFrameComparator1);
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         trends.forEach((t) -> {
             dataset.addValue(t.getAmount(), t.getType(), t.getSDF());
@@ -571,11 +599,15 @@ public class FinancialPortalView extends javax.swing.JFrame {
      * @param budgets the array list of trends the graph will be built around
      */
     public void addRingGraph(ArrayList<Budget> budgets) {
+        removeGraph(budgetsPageGraphPanel);
+        Collections.sort(budgets, Budget.BudgetFrameComparator);
         DefaultPieDataset pieData = new DefaultPieDataset();
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         budgets.forEach((b) -> {
-            pieData.setValue(b.getType(), b.getAmount());
-            pieData.setValue(b.getType() + " Remaining", b.getAmount() - b.getPaid());
+            double prop = b.getPaid() / b.getAmount() * 100;
+            pieData.setValue(b.getType() + ": " + prop + "%", b.getAmount());
+            if (b.getAmount() - b.getPaid() > 0) {
+                pieData.setValue(b.getType() + " Remaining: " + (100 - prop) + "%", b.getAmount() - b.getPaid());
+            }
         });
         JFreeChart chart = ChartFactory.createRingChart("Budgets Graph for " + budgets.get(0).getFrame(), pieData, false, true, false);
         ChartPanel panel = new ChartPanel(chart);
@@ -592,17 +624,48 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
-     * Function to remove all of the items in the accounts table
+     * Function to remove all of the items in the given table
+     *
+     * @param table the JTable table you wish to remove all elements from
      */
-    public void clearAccountsTable() {
-        accountsPageTable.removeAll();
+    public void clearTable(JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int rowCount = model.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
     }
-    
+
     /**
-     * Function to remove all of the items in the transactions table
+     * Function to disable the button based on the parameter passed in (should
+     * only be called once the button has been pressed)
+     *
+     * @param buttonName the String representing the page in which the button
+     * you wish to disable lies
      */
-    public void clearTransactionsTable() {
-        transactionsPageTable.removeAll();
+    public void disableButton(String buttonName) {
+        switch (buttonName) {
+            case "account":
+                accountsPageTitleButton.setEnabled(false);
+                break;
+            case "budget":
+                budgetsPageTitleButton.setEnabled(false);
+                break;
+            case "loan":
+                loansPageTitleButton.setEnabled(false);
+                break;
+            case "spending":
+                spendingsPageTitleButton.setEnabled(false);
+                break;
+            case "transaction":
+                transactionsPageTitleButton.setEnabled(false);
+                break;
+            case "trend":
+                trendsPageTitleButton.setEnabled(false);
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -615,6 +678,60 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
+     * Function to return the "master" accounts list
+     *
+     * @return the "master" accounts list
+     */
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+
+    /**
+     * Function to return the "master" budgets list
+     *
+     * @return the "master" budgets list
+     */
+    public ArrayList<Budget> getBudgets() {
+        return budgets;
+    }
+
+    /**
+     * Function to return the "master" loans list
+     *
+     * @return the "master" loans list
+     */
+    public ArrayList<Loan> getLoans() {
+        return loans;
+    }
+
+    /**
+     * Function to return the "master" spendings list
+     *
+     * @return the "master" spendings list
+     */
+    public ArrayList<Spending> getSpendings() {
+        return spendings;
+    }
+
+    /**
+     * Function to return the "master" transactions list
+     *
+     * @return the "master" accounts list
+     */
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    /**
+     * Function to return the "master" trends list
+     *
+     * @return the "master" trends list
+     */
+    public ArrayList<Trend> getTrends() {
+        return trends;
+    }
+
+    /**
      * Function to return the array list of buttons for each of our pages that
      * will get information
      *
@@ -622,6 +739,16 @@ public class FinancialPortalView extends javax.swing.JFrame {
      */
     public ArrayList<JButton> getButtons() {
         return buttons;
+    }
+
+    /**
+     * Function to return the array list of combo boxes for each of our pages
+     * that will get information
+     *
+     * @return the array list of combo boxes on each of our pages
+     */
+    public ArrayList<JComboBox> getBoxes() {
+        return boxes;
     }
 
     /**
@@ -666,6 +793,33 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
+     * Function to get the selected information (from the combo box) on the
+     * parameter's page
+     *
+     * @param pageName the page in which you are looking to get the information
+     * from
+     * @return the information that the user has selected on the given page
+     */
+    public String getItemSelected(String pageName) {
+        switch (pageName) {
+            case "account":
+                return (String) accountsPageComboBox.getSelectedItem();
+            case "budget":
+                return (String) budgetsPageComboBox.getSelectedItem();
+            case "laon":
+                return (String) loansPageComboBox.getSelectedItem();
+            case "spending":
+                return (String) spendingsPageComboBox.getSelectedItem();
+            case "transaction":
+                return (String) transactionsPageComboBox.getSelectedItem();
+            case "trend":
+                return (String) trendsPageComboBox.getSelectedItem();
+            default:
+                return "";
+        }
+    }
+
+    /**
      * Function to set the tab that the user selected to the home page tab
      *
      * @param evt the user's click
@@ -681,9 +835,10 @@ public class FinancialPortalView extends javax.swing.JFrame {
      * @param accounts array list of accounts to be put into the accounts table
      */
     public void inputDataIntoAccountsTable(ArrayList<Account> accounts) {
+        clearTable(accountsPageTable);
+        DefaultTableModel model = (DefaultTableModel) accountsPageTable.getModel();
         for (int i = 0; i < accounts.size(); i++) {
             Account a = accounts.get(i);
-            DefaultTableModel model = (DefaultTableModel) accountsPageTable.getModel();
             Object[] list = {a.getAmount(), a.getInstitution(), a.getType()};
             model.addRow(list);
         }
@@ -697,17 +852,21 @@ public class FinancialPortalView extends javax.swing.JFrame {
      * transactions table
      */
     public void inputDataIntoTransactionsTable(ArrayList<Transaction> transactions) {
+        clearTable(transactionsPageTable);
+        DefaultTableModel model = (DefaultTableModel) transactionsPageTable.getModel();
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
-            DefaultTableModel model = (DefaultTableModel) transactionsPageTable.getModel();
             Object[] list = {t.getAmount(), t.getFrame(), t.getInstitution()};
             model.addRow(list);
         }
     }
 
     /**
-     * Function to take an arraylist of accounts and insert each item into the accounts page combo box
-     * @param accounts the arraylist of accounts to be inserted into the combo box
+     * Function to take an arraylist of accounts and insert each item into the
+     * accounts page combo box
+     *
+     * @param accounts the arraylist of accounts to be inserted into the combo
+     * box
      */
     public void insertIntoAccountsComboBox(ArrayList<Account> accounts) {
         accounts.forEach((a) -> {
@@ -716,17 +875,21 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
-     * Function to take an arraylist of budgets and insert each item into the budgets page combo box
+     * Function to take an arraylist of budgets and insert each item into the
+     * budgets page combo box
+     *
      * @param budgets the arraylist of budgets to be inserted into the combo box
      */
     public void insertIntoBudgetsComboBox(ArrayList<Budget> budgets) {
         budgets.forEach((b) -> {
-            budgetsPageComboBox.addItem(b.getType() + ", " + b.getSDF());
+            budgetsPageComboBox.addItem(b.getFrame() + ", " + b.getType());
         });
     }
 
     /**
-     * Function to take an arraylist of loans and insert each item into the loans page combo box
+     * Function to take an arraylist of loans and insert each item into the
+     * loans page combo box
+     *
      * @param loans the arraylist of loans to be inserted into the combo box
      */
     public void insertIntoLoansComboBox(ArrayList<Loan> loans) {
@@ -736,32 +899,40 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
-     * Function to take an arraylist of spendings and insert each item into the spendings page combo box
-     * @param spendings the arraylist of spendings to be inserted into the combo box
+     * Function to take an arraylist of spendings and insert each item into the
+     * spendings page combo box
+     *
+     * @param spendings the arraylist of spendings to be inserted into the combo
+     * box
      */
     public void insertIntoSpendingsComboBox(ArrayList<Spending> spendings) {
         spendings.forEach((s) -> {
-            spendingsPageComboBox.addItem(s.getSDF() + ", " + s.getType());
+            spendingsPageComboBox.addItem(s.getFrame() + ", " + s.getType());
         });
     }
 
     /**
-     * Function to take an arraylist of transactions and insert each item into the transactions page combo box
-     * @param transactions the arraylist of transactions to be inserted into the combo box
+     * Function to take an arraylist of transactions and insert each item into
+     * the transactions page combo box
+     *
+     * @param transactions the arraylist of transactions to be inserted into the
+     * combo box
      */
     public void insertIntoTransactionsComboBox(ArrayList<Transaction> transactions) {
         transactions.forEach((t) -> {
-            transactionsPageComboBox.addItem(t.getSDF() + ", " + t.getInstitution());
+            transactionsPageComboBox.addItem(t.getFrame());
         });
     }
 
     /**
-     * Function to take an arraylist of trends and insert each item into the trends page combo box
+     * Function to take an arraylist of trends and insert each item into the
+     * trends page combo box
+     *
      * @param trends the arraylist of trends to be inserted into the combo box
      */
     public void insertIntoTrendsComboBox(ArrayList<Trend> trends) {
         trends.forEach((t) -> {
-            trendsPageComboBox.addItem(t.getSDF() + ", " + t.getType());
+            trendsPageComboBox.addItem(t.getType());
         });
     }
 
@@ -791,6 +962,60 @@ public class FinancialPortalView extends javax.swing.JFrame {
      */
     public void removeGraph(JPanel panelToRemoveFrom) {
         panelToRemoveFrom.removeAll();
+    }
+
+    /**
+     * Function to return the "master" array list of accounts
+     *
+     * @param accounts the "master" array list of accounts
+     */
+    public void setAccounts(ArrayList<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    /**
+     * Function to return the "master" array list of accounts
+     *
+     * @param budgets the "master" array list of budgets
+     */
+    public void setBudgets(ArrayList<Budget> budgets) {
+        this.budgets = budgets;
+    }
+
+    /**
+     * Function to return the "master" array list of accounts
+     *
+     * @param loans the "master" array list of loans
+     */
+    public void setLoans(ArrayList<Loan> loans) {
+        this.loans = loans;
+    }
+
+    /**
+     * Function to return the "master" array list of accounts
+     *
+     * @param spendings the "master" array list of spendings
+     */
+    public void setSpendings(ArrayList<Spending> spendings) {
+        this.spendings = spendings;
+    }
+
+    /**
+     * Function to return the "master" array list of accounts
+     *
+     * @param transactions the "master" array list of transactions
+     */
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    /**
+     * Function to return the "master" array list of accounts
+     *
+     * @param trends the "master" array list of trends
+     */
+    public void setTrends(ArrayList<Trend> trends) {
+        this.trends = trends;
     }
 
     /**
@@ -848,6 +1073,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     // Variables declaration
+    private ArrayList<Account> accounts;
     private javax.swing.JScrollPane accountsPageBriefingPane;
     private javax.swing.JTextArea accountsPageBriefingTextArea;
     private javax.swing.JMenuItem accountsPageButton;
@@ -862,6 +1088,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JScrollPane accountsPageTableScrollPane;
     private javax.swing.JPanel accountsPageTablePanel;
 
+    private ArrayList<Budget> budgets;
     private javax.swing.JScrollPane budgetsPageBriefingScrollPane;
     private javax.swing.JTextArea budgetsPageBriefingTextArea;
     private javax.swing.JMenuItem budgetsPageButton;
@@ -881,9 +1108,9 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JLabel homePageTitle;
     private javax.swing.JScrollPane homePageTextScrollPane;
 
+    private ArrayList<Loan> loans;
     private javax.swing.JMenuItem loansPageButton;
     private javax.swing.JComboBox<String> loansPageComboBox;
-    private javax.swing.JPanel loansPageGraphPanel;
     private javax.swing.JPanel loansPagePanel;
     private javax.swing.JPanel loansPageTitlePanel;
     private javax.swing.JButton loansPageTitleButton;
@@ -891,6 +1118,9 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JLabel loanPageLoanInstitutionInfo;
     private javax.swing.JLabel loanPageLoanAmountInfo;
     private javax.swing.JLabel loanPageLoanDateInfo;
+    private javax.swing.JLabel loanPageLoanExtraInfo1;
+    private javax.swing.JLabel loanPageLoanExtraInfo2;
+    private javax.swing.JLabel loanPageLoanExtraInfo3;
     private javax.swing.JLabel loanPageLowPayment;
     private javax.swing.JSlider loanPagePaymentSlider;
     private javax.swing.JLabel loanPageHighPayment;
@@ -902,6 +1132,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JMenu pagesButton;
     private javax.swing.JMenuItem quitButton;
 
+    private ArrayList<Spending> spendings;
     private javax.swing.JTextArea spendingsPageBriefingArea;
     private javax.swing.JScrollPane spendingsPageBriefingScrollArea;
     private javax.swing.JMenuItem spendingsPageButton;
@@ -916,6 +1147,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
 
     private javax.swing.JTabbedPane tabbedPane;
 
+    private ArrayList<Transaction> transactions;
     private javax.swing.JTextArea transactionsPageBriefingArea;
     private javax.swing.JMenuItem transactionsPageButton;
     private javax.swing.JComboBox<String> transactionsPageComboBox;
@@ -930,6 +1162,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JButton transactionsPageTitleButton;
     private javax.swing.JPanel transactionsPageTitlePanel;
 
+    private ArrayList<Trend> trends;
     private javax.swing.JTextArea trendsPageBriefingArea;
     private javax.swing.JScrollPane trendsPageBriefingScrollArea;
     private javax.swing.JMenuItem trendsPageButton;

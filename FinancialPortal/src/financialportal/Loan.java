@@ -2,6 +2,7 @@ package financialportal;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +50,14 @@ public class Loan extends Information {
         }
         this.sdf = sdf1.format(d1);
     }
+
+    public static Comparator<Loan> LoanFrameComparator = new Comparator<Loan>() {
+        @Override
+        public int compare(Loan l1, Loan l2) {
+            //ascending order
+            return l1.getInstitution().compareTo(l2.getInstitution());
+        }
+    };
 
     /**
      * Function to return the due date of the loan

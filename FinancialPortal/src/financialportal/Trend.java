@@ -2,6 +2,7 @@ package financialportal;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,46 @@ public class Trend extends Information {
         }
         sdf = sdf1.format(d1);
     }
+
+    public static Comparator<Trend> TrendFrameComparator1 = new Comparator<Trend>() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
+        Date d1 = null;
+        Date d2 = null;
+
+        @Override
+        public int compare(Trend t1, Trend t2) {
+            try {
+                d1 = sdf.parse(t1.getSDF());
+                d2 = sdf.parse(t2.getSDF());
+            } catch (ParseException ex) {
+                System.err.println(ex.getMessage());
+            }
+            //ascending order
+            return d1.compareTo(d2);
+        }
+    };
+
+    public static Comparator<Trend> TrendFrameComparator2 = new Comparator<Trend>() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
+        Date d1 = null;
+        Date d2 = null;
+
+        @Override
+        public int compare(Trend t1, Trend t2) {
+            String sdf1;
+            String sdf2;
+            try {
+                d1 = sdf.parse("January " + "01 " + t1.getType());
+                d2 = sdf.parse("January " + "01 " +t2.getType());
+            } catch (ParseException ex) {
+                System.err.println(ex.getMessage());
+            }
+            sdf1 = sdf.format(d1);
+            sdf2 = sdf.format(d2);
+            //ascending order
+            return sdf1.compareTo(sdf2);
+        }
+    };
 
     /**
      * Function to return the simple date format MMM DD YYYY

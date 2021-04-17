@@ -141,7 +141,7 @@ public class FinancialPortalModel {
                     } else {
                         query = "select * from Loans where Loans.LoanID == ?"; // Create SQL statement to select everything from loans table
                         statement = conn.prepareStatement(query); // Sanatizing our SQL in case of SQL injection
-                        statement.setString(1, String.valueOf(loanID));
+                        statement.setInt(1, loanID);
                     }
                     break;
                 default: // If not null, select specific ID
@@ -230,6 +230,26 @@ public class FinancialPortalModel {
     }
 
     /**
+     * Function to query and return an arraylist of transactions by unique date
+     *
+     * @return the arraylist of transactions by unique date
+     */
+    public ArrayList<Transaction> queryTransactionsByDate() {
+        ArrayList<Transaction> newTransactions = new ArrayList<>();
+        String query = "select distinct date from transactions";
+        try {
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                newTransactions.add(new Transaction(0, rs.getString("date"), ""));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return newTransactions;
+    }
+
+    /**
      * Function to query (select) the trend table
      *
      * @param frame the frame in which these users requested trends occurred
@@ -264,5 +284,26 @@ public class FinancialPortalModel {
         }
         // Return trends
         return trends;
+    }
+
+    /**
+     * Function to query the trends by year instead of a specific day of the
+     * year
+     *
+     * @return an arraylist of trends queried by year
+     */
+    public ArrayList<Trend> queryTrendsByDate() {
+        ArrayList<Trend> newTrends = new ArrayList<>();
+        String query = "select distinct TrendYear from trends";
+        try {
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                newTrends.add(new Trend(0, "May 01 2000", rs.getString("TrendYear")));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return newTrends;
     }
 }

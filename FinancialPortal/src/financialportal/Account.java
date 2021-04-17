@@ -1,5 +1,10 @@
 package financialportal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+
 /**
  * Class that will hold all of the data for the account table in our database.
  *
@@ -25,6 +30,14 @@ public class Account extends Information{
         this.institution = institution;
         this.type = type;
     }
+
+    public static Comparator<Account> AccountFrameComparator = new Comparator<Account>() {
+        @Override
+        public int compare(Account a1, Account a2) {
+            //ascending order
+            return a1.getInstitution().compareTo(a2.getInstitution());
+        }
+    };
 
     /**
      * Function to return the institution in which the money is being held

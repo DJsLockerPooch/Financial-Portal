@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -701,7 +702,13 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     }//GEN-LAST:event_tabbedPaneStateChanged
 
     private void accountsPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountsPageTitleButtonActionPerformed
-
+        accountsPageComboBox.addItem("69420");
+        accountsPageComboBox.addItem("420");
+        for (int i = 1; i <= 10; i++) {
+            DefaultTableModel model = (DefaultTableModel) accountsPageTable.getModel();
+            Object[] list = {100 * i, "Centris", "Checking"};
+            model.addRow(list);
+        }
     }//GEN-LAST:event_accountsPageTitleButtonActionPerformed
 
     private void budgetsPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetsPageTitleButtonActionPerformed
@@ -730,14 +737,18 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     }//GEN-LAST:event_trendsPageTitleButtonActionPerformed
 
     private void budgetsPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetsPageComboBoxActionPerformed
-        String text = (String) budgetsPageComboBox.getSelectedItem();
-        String[] split = text.split(", ");
-        ArrayList<Spending> spendings = getSpendings();
-        ArrayList<Spending> newSpendings = new ArrayList<>();
-        spendings.stream().filter((s) -> (s.getType().equals(split[0]) && s.getSDF().equals(split[1]))).forEachOrdered((s) -> {
-            newSpendings.add(s);
-        });
-        addBarGraph(newSpendings);
+//        String text = (String) budgetsPageComboBox.getSelectedItem(); // Get item selected
+//        String[] split = text.split(", "); // Split selected data by ', '
+//        ArrayList<Spending> spendings = getSpendings(); // Get all spendings
+//        ArrayList<Spending> newSpendings = new ArrayList<>(); // Create new arraylist
+//        spendings.stream().filter((s) -> (s.getType().equals(split[0]) && s.getSDF().equals(split[1]))).forEachOrdered((s) -> { // Iterating through each spending, and if the type equals the first token and SDF equals the second token
+//            newSpendings.add(s); // Add spending to new arraylist
+//        });
+//        addBarGraph(newSpendings); // Add bar graph with new arraylist
+        budgetsPageGraphPanel.removeAll();
+//    for (int i = 0; i < budgetsPageGraphPanel.getComponentCount(); i++){
+//        budgetsPageGraphPanel.remove(i);
+//    }
     }//GEN-LAST:event_budgetsPageComboBoxActionPerformed
 
     private void loanPagePaymentSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_loanPagePaymentSliderStateChanged
@@ -764,7 +775,10 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     }//GEN-LAST:event_trendsPageComboBoxActionPerformed
 
     private void accountsPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountsPageComboBoxActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) accountsPageTable.getModel();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            model.removeRow(i);
+        }
     }//GEN-LAST:event_accountsPageComboBoxActionPerformed
 
     public ArrayList<Spending> getSpendings() {
@@ -867,8 +881,8 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         ChartPanel panel = new ChartPanel(chart);
         spendingsPageGraphPanel.add(panel);
     }
-    
-    public void inputLoanIntoLoanPage(ArrayList<Loan> loans){
+
+    public void inputLoanIntoLoanPage(ArrayList<Loan> loans) {
         loanPageLoanAmountInfo.setText("Amount: $" + String.valueOf(loans.get(0).getAmount()));
         loanPageLoanInstitutionInfo.setText("Institution: " + String.valueOf(loans.get(0).getInstitution()));
         loanPageLoanDateInfo.setText("Date: " + String.valueOf(loans.get(0).getSDF()));

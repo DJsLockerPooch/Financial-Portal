@@ -2,6 +2,7 @@ package financialportal;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,24 @@ public class Spending extends Information {
         }
         this.sdf = sdf1.format(d1);
     }
+
+    public static Comparator<Spending> SpendingFrameComparator = new Comparator<Spending>() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
+        Date d1 = null;
+        Date d2 = null;
+
+        @Override
+        public int compare(Spending s1, Spending s2) {
+            try {
+                d1 = sdf.parse(s1.getSDF());
+                d2 = sdf.parse(s2.getSDF());
+            } catch (ParseException ex) {
+                System.err.println(ex.getMessage());
+            }
+            //ascending order
+            return d1.compareTo(d2);
+        }
+    };
 
     /**
      * Function to return the simple date format MMM DD YYYY

@@ -2,9 +2,8 @@ package financialportal;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class that will hold all of the data for the transaction table in our
@@ -37,10 +36,28 @@ public class Transaction extends Information {
         try {
             d1 = sdf1.parse(frame);
         } catch (ParseException ex) {
-            Logger.getLogger(Spending.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         this.sdf = sdf1.format(d1);
     }
+
+    public static Comparator<Transaction> TransactionFrameComparator = new Comparator<Transaction>() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
+        Date d1 = null;
+        Date d2 = null;
+
+        @Override
+        public int compare(Transaction t1, Transaction t2) {
+            try {
+                d1 = sdf.parse(t1.getFrame());
+                d2 = sdf.parse(t2.getFrame());
+            } catch (ParseException ex) {
+                System.err.println(ex.getMessage());
+            }
+            //ascending order
+            return d1.compareTo(d2);
+        }
+    };
 
     /**
      * Function to return the simple date format MMM DD YYYY
