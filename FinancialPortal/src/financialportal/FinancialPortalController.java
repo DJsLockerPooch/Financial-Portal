@@ -76,9 +76,8 @@ public class FinancialPortalController {
      * @param view a copy of the view object to get the information from the UI
      */
     public static void budgetsBox(FinancialPortalModel model, FinancialPortalView view) {
-        String institution = view.getItemSelected("budget");
-        String[] split = institution.split(", ");
-        ArrayList<Budget> budgets = model.queryBudgets(split[0], "");
+        String frame = view.getItemSelected("budget");
+        ArrayList<Budget> budgets = model.queryBudgets(frame, "");
         view.addRingGraph(budgets);
     }
 
@@ -90,10 +89,13 @@ public class FinancialPortalController {
      * @param view a copy of the view object to get the information from the UI
      */
     public static void loansBox(FinancialPortalModel model, FinancialPortalView view) {
+        view.resetLoansPage();
         String institution = view.getItemSelected("loan");
         String[] split = institution.split(", ");
-        ArrayList<Loan> loans = model.queryLoans(split[0], Integer.parseInt(split[1]));
-//        view.doLoan(loans);
+        if (split.length > 1) {
+            ArrayList<Loan> loans = model.queryLoans(split[0], Integer.parseInt(split[1]));
+            view.insertLoan(loans);
+        }
     }
 
     /**
@@ -105,14 +107,13 @@ public class FinancialPortalController {
      */
     public static void spendingsBox(FinancialPortalModel model, FinancialPortalView view) {
         String frame = view.getItemSelected("spending");
-        String[] split = frame.split(", ");
-        ArrayList<Spending> spendings = model.querySpendings(split[0]);
+        ArrayList<Spending> spendings = model.querySpendings(frame);
         view.addBarGraph(spendings);
     }
 
     /**
-     * Function to get the item selected from the transactions page combo box, and
-     * update the transactions graphic based on the item you selected
+     * Function to get the item selected from the transactions page combo box,
+     * and update the transactions graphic based on the item you selected
      *
      * @param model a copy of the model object to get data from the database
      * @param view a copy of the view object to get the information from the UI
@@ -146,9 +147,8 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveAccounts(FinancialPortalModel model, FinancialPortalView view) {
-        ArrayList<Account> accounts = model.queryAccounts("", ""); // Getting all accounts
+        ArrayList<Account> accounts = model.queryAccountsByDate(); // Getting all unique accounts
         Collections.sort(accounts, Account.AccountFrameComparator); // Sorting all accounts by institution name (A-Z)
-        view.setAccounts(accounts); // Setting the "master" accounts array
         view.insertIntoAccountsComboBox(accounts); // Inputting all data into accounts combo box
         view.disableButton("account"); // Disabling the button so the user doesn't load the data again
     }
@@ -163,9 +163,8 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveBudgets(FinancialPortalModel model, FinancialPortalView view) {
-        ArrayList<Budget> budgets = model.queryBudgets("", ""); // Getting all budgets
+        ArrayList<Budget> budgets = model.queryBudgetsByDate(); // Getting all budgets
         Collections.sort(budgets, Budget.BudgetFrameComparator); // Sorting budgets by date
-        view.setBudgets(budgets); // Setting the "master" budgets array
         view.insertIntoBudgetsComboBox(budgets); // Inputting all the data into the budgets combo box
         view.disableButton("budget"); // Disabling the button so the user doesn't load the data again
     }
@@ -180,11 +179,9 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveLoans(FinancialPortalModel model, FinancialPortalView view) {
-//        view.resetLoansPage();
         ArrayList<Loan> loans = model.queryLoans("", -1);
         Collections.sort(loans, Loan.LoanFrameComparator);
-        view.setLoans(loans);
-//        view.insertLoan(loans);
+        view.insertLoan(loans);
         view.insertIntoLoansComboBox(loans);
         view.disableButton("loan");
     }
@@ -199,9 +196,8 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveSpendings(FinancialPortalModel model, FinancialPortalView view) {
-        ArrayList<Spending> spendings = model.querySpendings("");
+        ArrayList<Spending> spendings = model.querySpendingsByDate();
         Collections.sort(spendings, Spending.SpendingFrameComparator);
-        view.setSpendings(spendings);
         view.insertIntoSpendingsComboBox(spendings);
         view.disableButton("spending");
     }
@@ -216,10 +212,7 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveTransactions(FinancialPortalModel model, FinancialPortalView view) {
-        ArrayList<Transaction> transactions = model.queryTransactions("");
-        Collections.sort(transactions, Transaction.TransactionFrameComparator);
-        view.setTransactions(transactions);
-        transactions = model.queryTransactionsByDate();
+        ArrayList<Transaction> transactions = model.queryTransactionsByDate();
         Collections.sort(transactions, Transaction.TransactionFrameComparator);
         view.insertIntoTransactionsComboBox(transactions);
         view.disableButton("transaction");
@@ -235,10 +228,7 @@ public class FinancialPortalController {
      * user's input
      */
     public static void saveTrends(FinancialPortalModel model, FinancialPortalView view) {
-        ArrayList<Trend> trends = model.queryTrends("");
-        Collections.sort(trends, Trend.TrendFrameComparator1);
-        view.setTrends(trends);
-        trends = model.queryTrendsByDate();
+        ArrayList<Trend> trends = model.queryTrendsByDate();
         Collections.sort(trends, Trend.TrendFrameComparator2);
         view.insertIntoTrendsComboBox(trends);
         view.disableButton("trend");

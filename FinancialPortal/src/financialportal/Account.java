@@ -31,12 +31,11 @@ public class Account extends Information{
         this.type = type;
     }
 
-    public static Comparator<Account> AccountFrameComparator = new Comparator<Account>() {
-        @Override
-        public int compare(Account a1, Account a2) {
-            //ascending order
-            return a1.getInstitution().compareTo(a2.getInstitution());
-        }
+    public static Comparator<Account> AccountFrameComparator = (Account a1, Account a2) -> {
+        //ascending order
+        String first = a1.getInstitution() + a1.getType();
+        String second = a2.getInstitution() + a2.getType();
+        return first.compareTo(second);
     };
 
     /**

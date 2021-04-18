@@ -77,6 +77,27 @@ public class FinancialPortalModel {
     }
 
     /**
+     * Function to query the accounts by unique institution and account type
+     *
+     * @return an arraylist of accounts queried by unique institution and
+     * account type
+     */
+    public ArrayList<Account> queryAccountsByDate() {
+        ArrayList<Account> newAccounts = new ArrayList<>();
+        String query = "select distinct institution, type from accounts";
+        try {
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                newAccounts.add(new Account(0, rs.getString("institution"), rs.getString("type")));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return newAccounts;
+    }
+    
+    /**
      * Function to query (select) the budget table
      *
      * @param frame the frame in which these users requested budgets occurred
@@ -117,6 +138,26 @@ public class FinancialPortalModel {
         }
         // Return budgets
         return budgets;
+    }
+
+    /**
+     * Function to query the budgets by unique frame
+     *
+     * @return an arraylist of budgets queried by frame
+     */
+    public ArrayList<Budget> queryBudgetsByDate() {
+        ArrayList<Budget> newBudgets = new ArrayList<>();
+        String query = "select distinct Frame from budgets";
+        try {
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                newBudgets.add(new Budget(0, rs.getString("frame"), 0, ""));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return newBudgets;
     }
 
     /**
@@ -194,6 +235,26 @@ public class FinancialPortalModel {
         }
         // Return spendings
         return spendings;
+    }
+
+    /**
+     * Function to query the spendings by frame
+     *
+     * @return an arraylist of trends queried by year
+     */
+    public ArrayList<Spending> querySpendingsByDate() {
+        ArrayList<Spending> newSpendings = new ArrayList<>();
+        String query = "select distinct frame from spendings";
+        try {
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                newSpendings.add(new Spending(0, rs.getString("frame"), ""));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return newSpendings;
     }
 
     /**

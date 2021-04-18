@@ -40,7 +40,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
         // Initializing accounts page objects
-        accounts = new ArrayList<>();
         accountsPageBriefingPane = new javax.swing.JScrollPane();
         accountsPageBriefingTextArea = new javax.swing.JTextArea();
         accountsPageComboBox = new javax.swing.JComboBox<>();
@@ -56,7 +55,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
         accountsPageTableScrollPane = new javax.swing.JScrollPane();
 
         // Initializing budgets page objects
-        budgets = new ArrayList<>();
         budgetsPageBriefingScrollPane = new javax.swing.JScrollPane();
         budgetsPageBriefingTextArea = new javax.swing.JTextArea();
         budgetsPageComboBox = new javax.swing.JComboBox<>();
@@ -80,7 +78,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
         homePageTitle = new javax.swing.JLabel();
 
         // Initializing loans page objects
-        loans = new ArrayList<>();
         loansPageButton = new javax.swing.JMenuItem();
         loansPageComboBox = new javax.swing.JComboBox<>();
         loanPageLoanAmountInfo = new javax.swing.JLabel();
@@ -106,7 +103,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
         quitButton = new javax.swing.JMenuItem();
 
         // Initializing spendings page objects
-        spendings = new ArrayList<>();
         spendingsPageButton = new javax.swing.JMenuItem();
         spendingsPageComboBox = new javax.swing.JComboBox<>();
         spendingsPageGraphPanel = new javax.swing.JPanel();
@@ -123,7 +119,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
         tabbedPane = new javax.swing.JTabbedPane();
 
         // Initializing transactions page objects
-        transactions = new ArrayList<>();
         transactionsPageBriefingArea = new javax.swing.JTextArea();
         transactionsPageButton = new javax.swing.JMenuItem();
         transactionsPageComboBox = new javax.swing.JComboBox<>();
@@ -139,7 +134,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
         transactionsPageTable = new javax.swing.JTable();
 
         // Initializing trends page objects
-        trends = new ArrayList<>();
         trendsPageBriefingArea = new javax.swing.JTextArea();
         trendsPageBriefingScrollArea = new javax.swing.JScrollPane();
         trendsPageButton = new javax.swing.JMenuItem();
@@ -311,12 +305,17 @@ public class FinancialPortalView extends javax.swing.JFrame {
         loanPageLowPayment.setText("0");
         loansPageTablePanel.add(loanPageLowPayment);
         loanPagePaymentSlider.setEnabled(false);
+        loanPagePaymentSlider.addChangeListener(this::loansPagePaymentSliderStateChanged);
         loansPageTablePanel.add(loanPagePaymentSlider);
         loanPageHighPayment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loanPageHighPayment.setText("-");
         loansPageTablePanel.add(loanPageHighPayment);
+        loanPageLoanExtraInfo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loanPageLoanExtraInfo1.setText("Estimated payoff date: N/A");
         loansPageTablePanel.add(loanPageLoanExtraInfo1);
         loansPageTablePanel.add(loanPageLoanExtraInfo2);
+        loanPageLoanExtraInfo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loanPageLoanExtraInfo3.setText("New payoff date: N/A");
         loansPageTablePanel.add(loanPageLoanExtraInfo3);
         loansPagePanel.add(loansPageTablePanel, java.awt.BorderLayout.CENTER);
 
@@ -678,60 +677,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
-     * Function to return the "master" accounts list
-     *
-     * @return the "master" accounts list
-     */
-    public ArrayList<Account> getAccounts() {
-        return accounts;
-    }
-
-    /**
-     * Function to return the "master" budgets list
-     *
-     * @return the "master" budgets list
-     */
-    public ArrayList<Budget> getBudgets() {
-        return budgets;
-    }
-
-    /**
-     * Function to return the "master" loans list
-     *
-     * @return the "master" loans list
-     */
-    public ArrayList<Loan> getLoans() {
-        return loans;
-    }
-
-    /**
-     * Function to return the "master" spendings list
-     *
-     * @return the "master" spendings list
-     */
-    public ArrayList<Spending> getSpendings() {
-        return spendings;
-    }
-
-    /**
-     * Function to return the "master" transactions list
-     *
-     * @return the "master" accounts list
-     */
-    public ArrayList<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    /**
-     * Function to return the "master" trends list
-     *
-     * @return the "master" trends list
-     */
-    public ArrayList<Trend> getTrends() {
-        return trends;
-    }
-
-    /**
      * Function to return the array list of buttons for each of our pages that
      * will get information
      *
@@ -765,6 +710,33 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
+     * Function to get the selected information (from the combo box) on the
+     * parameter's page
+     *
+     * @param pageName the page in which you are looking to get the information
+     * from
+     * @return the information that the user has selected on the given page
+     */
+    public String getItemSelected(String pageName) {
+        switch (pageName) {
+            case "account":
+                return (String) accountsPageComboBox.getSelectedItem();
+            case "budget":
+                return (String) budgetsPageComboBox.getSelectedItem();
+            case "loan":
+                return (String) loansPageComboBox.getSelectedItem();
+            case "spending":
+                return (String) spendingsPageComboBox.getSelectedItem();
+            case "transaction":
+                return (String) transactionsPageComboBox.getSelectedItem();
+            case "trend":
+                return (String) trendsPageComboBox.getSelectedItem();
+            default:
+                return "";
+        }
+    }
+
+    /**
      * Function to return the private panel based on the parameter panel
      *
      * @param panel a string representing the kind of panel desired
@@ -790,33 +762,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
      */
     public int getTabSelected() {
         return tabbedPane.getSelectedIndex();
-    }
-
-    /**
-     * Function to get the selected information (from the combo box) on the
-     * parameter's page
-     *
-     * @param pageName the page in which you are looking to get the information
-     * from
-     * @return the information that the user has selected on the given page
-     */
-    public String getItemSelected(String pageName) {
-        switch (pageName) {
-            case "account":
-                return (String) accountsPageComboBox.getSelectedItem();
-            case "budget":
-                return (String) budgetsPageComboBox.getSelectedItem();
-            case "laon":
-                return (String) loansPageComboBox.getSelectedItem();
-            case "spending":
-                return (String) spendingsPageComboBox.getSelectedItem();
-            case "transaction":
-                return (String) transactionsPageComboBox.getSelectedItem();
-            case "trend":
-                return (String) trendsPageComboBox.getSelectedItem();
-            default:
-                return "";
-        }
     }
 
     /**
@@ -882,7 +827,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
      */
     public void insertIntoBudgetsComboBox(ArrayList<Budget> budgets) {
         budgets.forEach((b) -> {
-            budgetsPageComboBox.addItem(b.getFrame() + ", " + b.getType());
+            budgetsPageComboBox.addItem(b.getFrame());
         });
     }
 
@@ -907,7 +852,7 @@ public class FinancialPortalView extends javax.swing.JFrame {
      */
     public void insertIntoSpendingsComboBox(ArrayList<Spending> spendings) {
         spendings.forEach((s) -> {
-            spendingsPageComboBox.addItem(s.getFrame() + ", " + s.getType());
+            spendingsPageComboBox.addItem(s.getFrame());
         });
     }
 
@@ -937,12 +882,35 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
+     * Function to insert the loan (in the unlikely chance there's more than
+     * one, the first one)
+     *
+     * @param loans the arraylist (hopefully) containing one loan
+     */
+    public void insertLoan(ArrayList<Loan> loans) {
+        Loan loan = loans.get(0);
+        loanPageLoanDateInfo.setText("Date: " + loan.getSDF());
+        loanPageLoanAmountInfo.setText("Amount: " + loan.getAmount());
+        loanPageLoanInstitutionInfo.setText("Institution: " + loan.getInstitution());
+        loanPagePaymentSlider.enable();
+    }
+
+    /**
      * Function to set the tab that the user selected to the loans page tab
      *
      * @param evt the user's click
      */
     private void loansPageButtonActionPerformed(java.awt.event.ActionEvent evt) {
         enablePage(3);
+    }
+
+    private void loansPagePaymentSliderStateChanged(javax.swing.event.ChangeEvent evt) {
+        String[] split = loanPageLoanAmountInfo.getText().split(" ");
+        if (!split[1].equals("N/A")) {
+            double loanAmt = Double.parseDouble(split[1]);
+            int paymentAmt = loanPagePaymentSlider.getValue();
+            loanPageHighPayment.setText(String.valueOf(loanAmt * paymentAmt / 2000));
+        }
     }
 
     /**
@@ -965,57 +933,15 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     /**
-     * Function to return the "master" array list of accounts
-     *
-     * @param accounts the "master" array list of accounts
+     * Function to reset the laons page display to their default
      */
-    public void setAccounts(ArrayList<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-    /**
-     * Function to return the "master" array list of accounts
-     *
-     * @param budgets the "master" array list of budgets
-     */
-    public void setBudgets(ArrayList<Budget> budgets) {
-        this.budgets = budgets;
-    }
-
-    /**
-     * Function to return the "master" array list of accounts
-     *
-     * @param loans the "master" array list of loans
-     */
-    public void setLoans(ArrayList<Loan> loans) {
-        this.loans = loans;
-    }
-
-    /**
-     * Function to return the "master" array list of accounts
-     *
-     * @param spendings the "master" array list of spendings
-     */
-    public void setSpendings(ArrayList<Spending> spendings) {
-        this.spendings = spendings;
-    }
-
-    /**
-     * Function to return the "master" array list of accounts
-     *
-     * @param transactions the "master" array list of transactions
-     */
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
-    /**
-     * Function to return the "master" array list of accounts
-     *
-     * @param trends the "master" array list of trends
-     */
-    public void setTrends(ArrayList<Trend> trends) {
-        this.trends = trends;
+    public void resetLoansPage() {
+        loanPageHighPayment.setText("-");
+        loanPageLowPayment.setText("0");
+        loanPageLoanDateInfo.setText("Date: N/A");
+        loanPageLoanAmountInfo.setText("Amount: N/A");
+        loanPageLoanInstitutionInfo.setText("Institution: N/A");
+        loanPagePaymentSlider.setValue(0);
     }
 
     /**
@@ -1073,7 +999,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     }
 
     // Variables declaration
-    private ArrayList<Account> accounts;
     private javax.swing.JScrollPane accountsPageBriefingPane;
     private javax.swing.JTextArea accountsPageBriefingTextArea;
     private javax.swing.JMenuItem accountsPageButton;
@@ -1088,7 +1013,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JScrollPane accountsPageTableScrollPane;
     private javax.swing.JPanel accountsPageTablePanel;
 
-    private ArrayList<Budget> budgets;
     private javax.swing.JScrollPane budgetsPageBriefingScrollPane;
     private javax.swing.JTextArea budgetsPageBriefingTextArea;
     private javax.swing.JMenuItem budgetsPageButton;
@@ -1108,7 +1032,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JLabel homePageTitle;
     private javax.swing.JScrollPane homePageTextScrollPane;
 
-    private ArrayList<Loan> loans;
     private javax.swing.JMenuItem loansPageButton;
     private javax.swing.JComboBox<String> loansPageComboBox;
     private javax.swing.JPanel loansPagePanel;
@@ -1132,7 +1055,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JMenu pagesButton;
     private javax.swing.JMenuItem quitButton;
 
-    private ArrayList<Spending> spendings;
     private javax.swing.JTextArea spendingsPageBriefingArea;
     private javax.swing.JScrollPane spendingsPageBriefingScrollArea;
     private javax.swing.JMenuItem spendingsPageButton;
@@ -1147,7 +1069,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
 
     private javax.swing.JTabbedPane tabbedPane;
 
-    private ArrayList<Transaction> transactions;
     private javax.swing.JTextArea transactionsPageBriefingArea;
     private javax.swing.JMenuItem transactionsPageButton;
     private javax.swing.JComboBox<String> transactionsPageComboBox;
@@ -1162,7 +1083,6 @@ public class FinancialPortalView extends javax.swing.JFrame {
     private javax.swing.JButton transactionsPageTitleButton;
     private javax.swing.JPanel transactionsPageTitlePanel;
 
-    private ArrayList<Trend> trends;
     private javax.swing.JTextArea trendsPageBriefingArea;
     private javax.swing.JScrollPane trendsPageBriefingScrollArea;
     private javax.swing.JMenuItem trendsPageButton;
