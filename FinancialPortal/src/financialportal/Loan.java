@@ -51,17 +51,21 @@ public class Loan extends Information {
         this.sdf = sdf1.format(d1);
     }
 
-    public static Comparator<Loan> LoanFrameComparator = new Comparator<Loan>() {
-        @Override
-        public int compare(Loan l1, Loan l2) {
-            //ascending order
-            return l1.getInstitution().compareTo(l2.getInstitution());
-        }
+    /**
+     * Comparator to compare which loan is "less" or "greater" than another loan
+     * by institution and loan ID
+     */
+    public static Comparator<Loan> LoanFrameComparator = (Loan l1, Loan l2) -> {
+        String f1 = l1.getInstitution() + l1.getLoanID();
+        String f2 = l2.getInstitution() + l2.getLoanID();
+        //ascending order
+        return f1.compareTo(f2);
     };
 
     /**
      * Function to return the due date of the loan
-     * @return 
+     *
+     * @return
      */
     public String getDue() {
         return due;
@@ -69,6 +73,7 @@ public class Loan extends Information {
 
     /**
      * Function to return the loan's institution
+     *
      * @return the loan's institution
      */
     public String getInstitution() {
@@ -86,6 +91,7 @@ public class Loan extends Information {
 
     /**
      * Function to return the laonID
+     *
      * @return the loanID being returned
      */
     public int getLoanID() {
@@ -116,6 +122,6 @@ public class Loan extends Information {
     @Override
     public void print() {
         System.out.println("\nLoans:\n-------------------------");
-        System.out.println("Amount: " + amount + " Due: " + sdf + " Institution: " + institution +" Interest: " + interest + " LoanID: " + loanID + " Paid: " + paid);
+        System.out.println("Amount: " + amount + " Due: " + sdf + " Institution: " + institution + " Interest: " + interest + " LoanID: " + loanID + " Paid: " + paid);
     }
 }

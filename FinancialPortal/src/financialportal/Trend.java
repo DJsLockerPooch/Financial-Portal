@@ -41,6 +41,10 @@ public class Trend extends Information {
         sdf = sdf1.format(d1);
     }
 
+    /**
+     * Comparator to compare which trend is "less" or "greater" than another
+     * trend by comparing dates
+     */
     public static Comparator<Trend> TrendFrameComparator1 = new Comparator<Trend>() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         Date d1 = null;
@@ -54,11 +58,15 @@ public class Trend extends Information {
             } catch (ParseException ex) {
                 System.err.println(ex.getMessage());
             }
-            //ascending order
-            return d1.compareTo(d2);
+            //descending order
+            return d2.compareTo(d1);
         }
     };
 
+    /**
+     * Comparator to compare which trend is "less" or "greater" than another
+     * trend by year
+     */
     public static Comparator<Trend> TrendFrameComparator2 = new Comparator<Trend>() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         Date d1 = null;
@@ -70,19 +78,20 @@ public class Trend extends Information {
             String sdf2;
             try {
                 d1 = sdf.parse("January " + "01 " + t1.getType());
-                d2 = sdf.parse("January " + "01 " +t2.getType());
+                d2 = sdf.parse("January " + "01 " + t2.getType());
             } catch (ParseException ex) {
                 System.err.println(ex.getMessage());
             }
             sdf1 = sdf.format(d1);
             sdf2 = sdf.format(d2);
             //ascending order
-            return sdf1.compareTo(sdf2);
+            return sdf2.compareTo(sdf1);
         }
     };
 
     /**
      * Function to return the simple date format MMM DD YYYY
+     *
      * @return the simple date format MMM DD YYYY
      */
     public String getSDF() {

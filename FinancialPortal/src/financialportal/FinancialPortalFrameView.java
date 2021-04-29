@@ -1,5 +1,7 @@
 package financialportal;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JButton;
@@ -92,9 +94,9 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         loanPageLowPayment = new javax.swing.JLabel();
         loanPagePaymentSlider = new javax.swing.JSlider();
         loanPageHighPayment = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        loansPageExtraInfo1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        loansPageExtraInfo2 = new javax.swing.JLabel();
         loansPageHelpScrollPane = new javax.swing.JScrollPane();
         loansPageHelpTextArea = new javax.swing.JTextArea();
         spendingsPagePanel = new javax.swing.JPanel();
@@ -359,7 +361,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         loansPageTablePanel.add(loanPageLoanAmountInfo);
 
         loanPageLoanDateInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loanPageLoanDateInfo.setText("Percent: N/A");
+        loanPageLoanDateInfo.setText("Date: N/A");
         loansPageTablePanel.add(loanPageLoanDateInfo);
 
         loanPageLowPayment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -378,17 +380,16 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         loanPageHighPayment.setText("-");
         loansPageTablePanel.add(loanPageHighPayment);
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("jLabel8");
-        loansPageTablePanel.add(jLabel8);
-
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("jLabel7");
-        loansPageTablePanel.add(jLabel7);
+        loansPageExtraInfo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loansPageExtraInfo1.setText("Estimated payoff date: N/A");
+        loansPageTablePanel.add(loansPageExtraInfo1);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("jLabel4");
         loansPageTablePanel.add(jLabel4);
+
+        loansPageExtraInfo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loansPageExtraInfo2.setText("New payoff date: N/A");
+        loansPageTablePanel.add(loansPageExtraInfo2);
 
         loansPagePanel.add(loansPageTablePanel, java.awt.BorderLayout.CENTER);
 
@@ -396,7 +397,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
         loansPageHelpTextArea.setColumns(20);
         loansPageHelpTextArea.setLineWrap(true);
         loansPageHelpTextArea.setRows(5);
-        loansPageHelpTextArea.setText("   Hello and welcome to your loans page. This page will display the loan that you requested when you select it from the drop down menu.\n\n   The institution, amount, and due date will be displayed. The slider represents how much of the payment for the month you would like to pay. Below the slider will be the adjusted loan payoff date assuming payments would remain the same.");
+        loansPageHelpTextArea.setText("   Hello and welcome to your loans page. This page will display the loan that you requested when you select it from the drop down menu.\n\n   The institution, amount, and due date will be displayed. The slider represents how much extra of the payment for the month you would like to pay. Below the slider will be the adjusted loan payoff date assuming payments would remain the same.");
         loansPageHelpTextArea.setWrapStyleWord(true);
         loansPageHelpScrollPane.setViewportView(loansPageHelpTextArea);
 
@@ -719,7 +720,7 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private void loansPageTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansPageTitleButtonActionPerformed
         loanPagePaymentSlider.enable();
         ArrayList<Loan> loans = new ArrayList<>();
-        loans.add(new Loan(1000, "May 1 2020", "Centris", 3.4, 1, 500));
+        loans.add(new Loan(1000, "January 1 2020", "Centris", 3.4, 1, 500));
         inputLoanIntoLoanPage(loans);
     }//GEN-LAST:event_loansPageTitleButtonActionPerformed
 
@@ -754,9 +755,26 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private void loanPagePaymentSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_loanPagePaymentSliderStateChanged
         String[] split = loanPageLoanAmountInfo.getText().split(" ");
         double loanAmt = Double.parseDouble(split[1].substring(1));
+        double monthPayment = loanAmt / 12;
         int paymentAmt = loanPagePaymentSlider.getValue();
-        loanPageHighPayment.setText(String.valueOf(loanAmt * paymentAmt / 100));
+        double newMonthPayment = monthPayment + paymentAmt;
+        int noMonths = (int) (loanAmt / newMonthPayment) + 1;
+        if (noMonths == 13){
+            noMonths = 12;
+        }
+        noMonths -= 12;
+        loanPageHighPayment.setText(String.valueOf(loanAmt * paymentAmt / 1000));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        LocalDate date = LocalDate.parse(loanPageLoanDateInfo.getText().substring(6), formatter);
+        date = date.plusMonths(noMonths);
+        String newDate = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        loansPageExtraInfo2.setText("New payoff date: " + newDate);
+        loansPageExtraInfo1.setText("Estimated payoff date: " + loanPageLoanDateInfo.getText());
     }//GEN-LAST:event_loanPagePaymentSliderStateChanged
+
+    public void updateLoanExtraInfo1(int amt) {
+        loansPageExtraInfo1.setText("Estimated payoff date: ");
+    }
 
     private void loansPageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansPageComboBoxActionPerformed
         // TODO add your handling code here:
@@ -981,8 +999,6 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JScrollPane homePageTextPane;
     private javax.swing.JLabel homePageTitle;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel loanPageHighPayment;
     private javax.swing.JLabel loanPageLoanAmountInfo;
     private javax.swing.JLabel loanPageLoanDateInfo;
@@ -991,6 +1007,8 @@ public class FinancialPortalFrameView extends javax.swing.JFrame {
     private javax.swing.JSlider loanPagePaymentSlider;
     private javax.swing.JMenuItem loansPageButton;
     private javax.swing.JComboBox<String> loansPageComboBox;
+    private javax.swing.JLabel loansPageExtraInfo1;
+    private javax.swing.JLabel loansPageExtraInfo2;
     private javax.swing.JScrollPane loansPageHelpScrollPane;
     private javax.swing.JTextArea loansPageHelpTextArea;
     private javax.swing.JPanel loansPagePanel;

@@ -41,6 +41,10 @@ public class Transaction extends Information {
         this.sdf = sdf1.format(d1);
     }
 
+    /**
+     * Comparator to see which transaction is "less" or "greater" than another
+     * transaction by date
+     */
     public static Comparator<Transaction> TransactionFrameComparator = new Comparator<Transaction>() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         Date d1 = null;
@@ -54,8 +58,8 @@ public class Transaction extends Information {
             } catch (ParseException ex) {
                 System.err.println(ex.getMessage());
             }
-            //ascending order
-            return d1.compareTo(d2);
+            //descending order
+            return d2.compareTo(d1);
         }
     };
 

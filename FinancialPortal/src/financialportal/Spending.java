@@ -41,6 +41,10 @@ public class Spending extends Information {
         this.sdf = sdf1.format(d1);
     }
 
+    /**
+     * Comparator to compare which spending is "less" or "greater" than another
+     * spending by date
+     */
     public static Comparator<Spending> SpendingFrameComparator = new Comparator<Spending>() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         Date d1 = null;
@@ -54,8 +58,8 @@ public class Spending extends Information {
             } catch (ParseException ex) {
                 System.err.println(ex.getMessage());
             }
-            //ascending order
-            return d1.compareTo(d2);
+            //descending order
+            return d2.compareTo(d1);
         }
     };
 

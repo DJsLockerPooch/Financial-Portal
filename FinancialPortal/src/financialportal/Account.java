@@ -1,16 +1,13 @@
 package financialportal;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Comparator;
-import java.util.Date;
 
 /**
  * Class that will hold all of the data for the account table in our database.
  *
  * @author Christian Kasel
  */
-public class Account extends Information{
+public class Account extends Information {
 
     private double amount;
     private String institution;
@@ -31,6 +28,10 @@ public class Account extends Information{
         this.type = type;
     }
 
+    /**
+     * Comparator to tell which account it "less" or "greater" than another
+     * account by account institution, and account type
+     */
     public static Comparator<Account> AccountFrameComparator = (Account a1, Account a2) -> {
         //ascending order
         String first = a1.getInstitution() + a1.getType();

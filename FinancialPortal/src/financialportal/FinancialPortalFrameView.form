@@ -611,7 +611,7 @@
                 <Component class="javax.swing.JLabel" name="loanPageLoanDateInfo">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Percent: N/A"/>
+                    <Property name="text" type="java.lang.String" value="Date: N/A"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="loanPageLowPayment">
@@ -634,22 +634,21 @@
                     <Property name="text" type="java.lang.String" value="-"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel8">
+                <Component class="javax.swing.JLabel" name="loansPageExtraInfo1">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="jLabel8"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel7">
-                  <Properties>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="jLabel7"/>
+                    <Property name="text" type="java.lang.String" value="Estimated payoff date: N/A"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="jLabel4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="loansPageExtraInfo2">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="New payoff date: N/A"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -672,7 +671,7 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="   Hello and welcome to your loans page. This page will display the loan that you requested when you select it from the drop down menu.&#xa;&#xa;   The institution, amount, and due date will be displayed. The slider represents how much of the payment for the month you would like to pay. Below the slider will be the adjusted loan payoff date assuming payments would remain the same."/>
+                    <Property name="text" type="java.lang.String" value="   Hello and welcome to your loans page. This page will display the loan that you requested when you select it from the drop down menu.&#xa;&#xa;   The institution, amount, and due date will be displayed. The slider represents how much extra of the payment for the month you would like to pay. Below the slider will be the adjusted loan payoff date assuming payments would remain the same."/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                   </Properties>
                 </Component>

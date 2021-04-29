@@ -1,5 +1,7 @@
 package financialportal;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JButton;
@@ -906,10 +908,28 @@ public class FinancialPortalView extends javax.swing.JFrame {
 
     private void loansPagePaymentSliderStateChanged(javax.swing.event.ChangeEvent evt) {
         String[] split = loanPageLoanAmountInfo.getText().split(" ");
-        if (!split[1].equals("N/A")) {
-            double loanAmt = Double.parseDouble(split[1]);
-            int paymentAmt = loanPagePaymentSlider.getValue();
+        if (!split[1].equals("N/A")) { // When the slider is initialized, it's at 0, and the text is N/A
+            double loanAmt = Double.parseDouble(split[1]); // Get loan amount
+            int paymentAmt = loanPagePaymentSlider.getValue(); // Get slider payment amount
+
+            int payoffMonths = 12; // Number of months from now until due date of loan (dates in this project aren't accurate with real life but if this were real it would be a formula to get this number)
+            double monthPayment = loanAmt / payoffMonths; // Old monthly payment
+            double newMonthPayment = monthPayment + paymentAmt; // New monthly payment (old + slider value)
+            int noMonths = (int) (loanAmt / newMonthPayment + 1); // Getting how many months it will take with the new value to pay back the full amount (+1 for when payments are finished mid-month)
+            if (noMonths == 13) { // If we're at 0 it'll add 1, so we want to set it back to 12
+                noMonths = 12;
+            }
+            noMonths -= 12; // Subtract 12 "months" from noMonths 
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy"); // Creating a formatter
+            LocalDate date = LocalDate.parse(loanPageLoanDateInfo.getText().substring(6), formatter); // Making a localDate object
+            date = date.plusMonths(noMonths); // Adding noMonths to date (which most numbers are negative) to get the new payoff date
+            String newDate = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")); // Reformatting date to look uniform
+
+            // Setting label values
             loanPageHighPayment.setText(String.valueOf(loanAmt * paymentAmt / 2000));
+            loanPageLoanExtraInfo1.setText("Estimated payoff date: " + loanPageLoanDateInfo.getText().substring(6));
+            loanPageLoanExtraInfo3.setText("New payoff date: " + newDate);
         }
     }
 

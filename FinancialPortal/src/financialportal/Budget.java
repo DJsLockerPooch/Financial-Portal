@@ -44,6 +44,10 @@ public class Budget extends Information {
         this.sdf = sdf1.format(d1);
     }
 
+    /**
+     * Comparator to tell which budget is "less" or "greater" than another
+     * budget by comparing the dates of the budgets
+     */
     public static Comparator<Budget> BudgetFrameComparator = new Comparator<Budget>() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy");
         Date d1 = null;
@@ -57,8 +61,8 @@ public class Budget extends Information {
             } catch (ParseException ex) {
                 System.err.println(ex.getMessage());
             }
-            //ascending order
-            return d1.compareTo(d2);
+            //descending order
+            return d2.compareTo(d1);
         }
     };
 
