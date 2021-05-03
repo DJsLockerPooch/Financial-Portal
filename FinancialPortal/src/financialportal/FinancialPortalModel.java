@@ -23,7 +23,7 @@ public class FinancialPortalModel {
      */
     public FinancialPortalModel() {
         try {
-            String url = "jdbc:sqlite:/Users/christiankasel/Desktop/Financial-Portal/portalDB.db";
+            String url = "jdbc:sqlite:/Users/christiankasel/Desktop/Financial-Portal/portalDB.db"; // Might have to change with other desktop
             String username = "";
             String password = "";
 
