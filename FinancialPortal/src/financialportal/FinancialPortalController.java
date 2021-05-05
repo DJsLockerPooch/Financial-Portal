@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 
 /**
  * Class that will determine how the database (model) will interact with the
- * user (view) (use java -jar "FinancialPortal.jar" )
+ * user (view) (use java -jar "FinancialPortal.jar")
  *
  * @author Christian Kasel
  */
